@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[SalaryLock] (
+    [Id]                    VARCHAR (30) NOT NULL,
+    [EmpSystemId]           VARCHAR (30) NOT NULL,
+    [YearNo]                INT          NOT NULL,
+    [MonthNo]               INT          NOT NULL,
+    [IsLocked]              BIT          DEFAULT ((0)) NOT NULL,
+    [AddedBy]               VARCHAR (30) NOT NULL,
+    [AddedDate]             DATETIME     NOT NULL,
+    [AddedFromIP]           VARCHAR (15) NOT NULL,
+    [UpdatedBy]             VARCHAR (30) NULL,
+    [UpdatedDate]           DATETIME     NULL,
+    [UpdatedFromIP]         VARCHAR (15) NULL,
+    [PayableVoucherId]      VARCHAR (50) NULL,
+    [DisbursementVoucherId] VARCHAR (50) NULL,
+    [IsDisbursed]           BIT          DEFAULT ((0)) NULL,
+    [SalaryStructureId]     VARCHAR (30) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_SalaryLock_DisbursementVoucher] FOREIGN KEY ([DisbursementVoucherId]) REFERENCES [TRN].[Voucher] ([Id]),
+    CONSTRAINT [FK_SalaryLock_Voucher] FOREIGN KEY ([PayableVoucherId]) REFERENCES [TRN].[Voucher] ([Id])
+);
+

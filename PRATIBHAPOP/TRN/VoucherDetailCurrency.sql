@@ -1,0 +1,25 @@
+﻿CREATE TABLE [TRN].[VoucherDetailCurrency] (
+    [Id]                   VARCHAR (90)     NOT NULL,
+    [VoucherId]            VARCHAR (50)     NOT NULL,
+    [VoucherDetailId]      VARCHAR (80)     NOT NULL,
+    [ParallelCurrencyId]   VARCHAR (10)     NOT NULL,
+    [FromCurrencyId]       VARCHAR (10)     NOT NULL,
+    [ToCurrencyId]         VARCHAR (10)     NOT NULL,
+    [ToCurrencyRate]       DECIMAL (18, 10) NOT NULL,
+    [ToCurrencyConversion] DECIMAL (18, 10) NOT NULL,
+    [DrAmount]             DECIMAL (20, 10) NOT NULL,
+    [CrAmount]             DECIMAL (20, 10) NOT NULL,
+    [AddedBy]              VARCHAR (30)     NOT NULL,
+    [AddedDate]            DATETIME         NOT NULL,
+    [AddedFromIP]          VARCHAR (15)     NOT NULL,
+    [UpdatedBy]            VARCHAR (30)     NULL,
+    [UpdatedDate]          DATETIME         NULL,
+    [UpdatedFromIP]        VARCHAR (15)     NULL,
+    CONSTRAINT [PK_VoucherDetailCurrency] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_VoucherDetailCurrency_CurrencyFrom] FOREIGN KEY ([FromCurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_VoucherDetailCurrency_CurrencyParallel] FOREIGN KEY ([ParallelCurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_VoucherDetailCurrency_CurrencyTo] FOREIGN KEY ([ToCurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_VoucherDetailCurrency_Voucher] FOREIGN KEY ([VoucherId]) REFERENCES [TRN].[Voucher] ([Id]),
+    CONSTRAINT [FK_VoucherDetailCurrency_VoucherDetail] FOREIGN KEY ([VoucherDetailId]) REFERENCES [TRN].[VoucherDetail] ([Id])
+);
+

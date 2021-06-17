@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[HourlyOT] (
+    [Id]              VARCHAR (30) NOT NULL,
+    [EmpSystemId]     VARCHAR (30) NULL,
+    [FromDate]        DATETIME     NOT NULL,
+    [ToDate]          DATETIME     NOT NULL,
+    [Duration]        INT          NOT NULL,
+    [WorkDate]        DATETIME     NOT NULL,
+    [PlantId]         VARCHAR (10) NULL,
+    [AddedBy]         VARCHAR (30) NOT NULL,
+    [AddedDate]       DATETIME     NOT NULL,
+    [AddedFromIP]     VARCHAR (15) NOT NULL,
+    [UpdatedBy]       VARCHAR (30) NULL,
+    [UpdatedDate]     DATETIME     NULL,
+    [UpdatedFromIP]   VARCHAR (15) NULL,
+    [OTType]          VARCHAR (30) NULL,
+    [ManualInTime]    DATETIME     NULL,
+    [IsManualInTime]  BIT          DEFAULT ((0)) NOT NULL,
+    [ManualOutTime]   DATETIME     NULL,
+    [IsManualOutTime] BIT          DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id])
+);
+

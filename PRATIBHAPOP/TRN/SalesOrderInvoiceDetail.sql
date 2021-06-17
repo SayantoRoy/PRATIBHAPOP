@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[SalesOrderInvoiceDetail] (
+    [Id]                             VARCHAR (30)    NOT NULL,
+    [MaterialMasterId]               VARCHAR (30)    NULL,
+    [ArticleId]                      VARCHAR (10)    NULL,
+    [UomId]                          VARCHAR (10)    NULL,
+    [SalesOrderInvoicePackingListId] VARCHAR (30)    NULL,
+    [SalesOrderInvoiceMasterId]      VARCHAR (30)    NULL,
+    [SalesOrderPackingListDetailId]  VARCHAR (30)    NULL,
+    [SalesOrderPackingListMasterId]  VARCHAR (30)    NULL,
+    [Qty]                            DECIMAL (18)    NULL,
+    [Rate]                           DECIMAL (18, 3) NULL,
+    [AddedBy]                        VARCHAR (30)    NOT NULL,
+    [AddedDate]                      DATETIME        NOT NULL,
+    [AddedFromIP]                    VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                      VARCHAR (30)    NULL,
+    [UpdatedDate]                    DATETIME        NULL,
+    [UpdatedFromIP]                  VARCHAR (15)    NULL,
+    [Amount]                         DECIMAL (18, 4) NULL,
+    CONSTRAINT [PK_SalesOrderInvoiceDetail] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_MaterialMaster] FOREIGN KEY ([MaterialMasterId]) REFERENCES [MST].[MaterialMaster] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_SalesOrderInvoiceMaster] FOREIGN KEY ([SalesOrderInvoiceMasterId]) REFERENCES [TRN].[SalesOrderInvoiceMaster] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_SalesOrderInvoicePackingList] FOREIGN KEY ([SalesOrderInvoicePackingListId]) REFERENCES [TRN].[SalesOrderInvoicePackingList] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_SalesOrderPackingListDetail] FOREIGN KEY ([SalesOrderPackingListDetailId]) REFERENCES [TRN].[SalesOrderPackingListMaterial] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_SalesOrderPackingListMaster] FOREIGN KEY ([SalesOrderPackingListMasterId]) REFERENCES [TRN].[SalesOrderPackingListMaster] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_Submaterial] FOREIGN KEY ([ArticleId]) REFERENCES [MST].[MaterialMasterArticle] ([Id]),
+    CONSTRAINT [FK_SalesOrderInvoiceDetail_UnitOfMeasurement] FOREIGN KEY ([UomId]) REFERENCES [SCS].[UnitOfMeasurement] ([Id])
+);
+

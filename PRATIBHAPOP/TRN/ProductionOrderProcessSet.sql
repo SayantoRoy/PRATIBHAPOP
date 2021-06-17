@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[ProductionOrderProcessSet] (
+    [Id]                    VARCHAR (10)    NOT NULL,
+    [ProductionOrderId]     VARCHAR (30)    NULL,
+    [ProcessId]             VARCHAR (10)    NULL,
+    [EntityIdWithinCompany] VARCHAR (10)    NULL,
+    [EntityIdWithinGroup]   VARCHAR (10)    NULL,
+    [PartyId]               VARCHAR (10)    NULL,
+    [Sequence]              DECIMAL (18, 2) NULL,
+    [Days]                  INT             NOT NULL,
+    [ProductionCycleTime]   INT             NOT NULL,
+    [JobWorkApplicable]     BIT             NOT NULL,
+    [JobWorkType]           VARCHAR (50)    NULL,
+    [IsBaseProcess]         BIT             NULL,
+    [Symbol]                VARCHAR (2)     NULL,
+    [AddedBy]               VARCHAR (30)    NOT NULL,
+    [AddedDate]             DATETIME        NOT NULL,
+    [AddedFromIP]           VARCHAR (15)    NOT NULL,
+    [UpdatedBy]             VARCHAR (30)    NULL,
+    [UpdatedDate]           DATETIME        NULL,
+    [UpdatedFromIP]         VARCHAR (15)    NULL,
+    CONSTRAINT [PK_ProductionOrderProcessSet] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProductionOrderProcessSet_EntityIdWithinCompany] FOREIGN KEY ([EntityIdWithinCompany]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_ProductionOrderProcessSet_EntityIdWithinGroup] FOREIGN KEY ([EntityIdWithinGroup]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_ProductionOrderProcessSet_Party] FOREIGN KEY ([PartyId]) REFERENCES [HKP].[Party] ([Id]),
+    CONSTRAINT [FK_ProductionOrderProcessSet_Process] FOREIGN KEY ([ProcessId]) REFERENCES [HKP].[Process] ([Id])
+);
+

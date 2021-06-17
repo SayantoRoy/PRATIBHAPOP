@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[IncomeTaxItemChild] (
+    [Id]                    VARCHAR (20)    NOT NULL,
+    [IncomeTaxItemMasterId] VARCHAR (20)    NOT NULL,
+    [SalaryHeadId]          VARCHAR (30)    NULL,
+    [TaxSavingItemId]       VARCHAR (20)    NOT NULL,
+    [Nature]                VARCHAR (10)    NULL,
+    [isPercentage]          BIT             DEFAULT ((0)) NOT NULL,
+    [isFix]                 BIT             DEFAULT ((0)) NOT NULL,
+    [isTaxableIncome]       BIT             DEFAULT ((0)) NOT NULL,
+    [isTax]                 BIT             DEFAULT ((0)) NOT NULL,
+    [Limit]                 DECIMAL (18, 2) NULL,
+    [Remarks]               VARCHAR (100)   NULL,
+    [AddedBy]               VARCHAR (30)    NOT NULL,
+    [AddedDate]             DATETIME        NOT NULL,
+    [UpdatedBy]             VARCHAR (30)    NULL,
+    [UpdatedDate]           DATETIME        NULL,
+    [isApplicable]          BIT             DEFAULT ((0)) NOT NULL,
+    [IsInvestment]          BIT             DEFAULT ((0)) NOT NULL,
+    [IsDeduction]           BIT             DEFAULT ((0)) NOT NULL,
+    [IsEarning]             BIT             DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK__IncomeTaxItemChild] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_IncomeTaxItemChild_IncomeTaxItemMasterId] FOREIGN KEY ([IncomeTaxItemMasterId]) REFERENCES [dbo].[IncomeTaxItemMaster] ([SystemId]),
+    CONSTRAINT [FK_IncomeTaxItemChild_SalaryHeadId] FOREIGN KEY ([SalaryHeadId]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID]),
+    CONSTRAINT [FK_IncomeTaxItemChild_TaxSavingItemId] FOREIGN KEY ([TaxSavingItemId]) REFERENCES [HKP].[TaxSavingItem] ([Id])
+);
+

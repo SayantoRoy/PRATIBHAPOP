@@ -1,0 +1,26 @@
+﻿CREATE TABLE [MST].[ProjectPlanningRequisitionMaterialMaster] (
+    [Id]                              VARCHAR (10)    NOT NULL,
+    [ProjectPlanningRequisitionId]    VARCHAR (10)    NOT NULL,
+    [ProjectPlanningMaterialMasterId] VARCHAR (10)    NOT NULL,
+    [MaterialMasterId]                VARCHAR (30)    NULL,
+    [ReverseQuantity]                 DECIMAL (18, 4) NULL,
+    [Quantity]                        DECIMAL (18, 4) NOT NULL,
+    [AlternativeUomId]                VARCHAR (10)    NULL,
+    [BaseUOMId]                       VARCHAR (10)    NULL,
+    [AddedBy]                         VARCHAR (30)    NOT NULL,
+    [AddedDate]                       DATETIME        NOT NULL,
+    [AddedFromIP]                     VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                       VARCHAR (30)    NULL,
+    [UpdatedDate]                     DATETIME        NULL,
+    [UpdatedFromIP]                   VARCHAR (15)    NULL,
+    [ProjectPlanningId]               VARCHAR (10)    DEFAULT ((1)) NOT NULL,
+    [PlanningQuantity]                DECIMAL (18, 4) NULL,
+    [BaseUoMQuantity]                 DECIMAL (18, 4) NULL,
+    [PlanningUoMId]                   VARCHAR (10)    NULL,
+    CONSTRAINT [PK_ProjectPlanningRequisitionMaterialMaster] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProjectPlanningRequisitionMaterialMaster_ProjectPlanning] FOREIGN KEY ([ProjectPlanningId]) REFERENCES [MST].[ProjectPlanning] ([Id]),
+    CONSTRAINT [FK_ProjectPlanningRequisitionMaterialMaster_ProjectPlanningMaterialMaster] FOREIGN KEY ([ProjectPlanningMaterialMasterId]) REFERENCES [MST].[ProjectPlanningMaterialMaster] ([Id]),
+    CONSTRAINT [FK_ProjectPlanningRequisitionMaterialMaster_ProjectPlanningRequisition] FOREIGN KEY ([ProjectPlanningRequisitionId]) REFERENCES [MST].[ProjectPlanningRequisition] ([Id]),
+    CONSTRAINT [FK_ProjectPlanningRequisitionMaterialMaster_UnitOfMeasurement] FOREIGN KEY ([PlanningUoMId]) REFERENCES [SCS].[UnitOfMeasurement] ([Id])
+);
+

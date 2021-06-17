@@ -1,0 +1,26 @@
+﻿CREATE TABLE [TRN].[PurchaseDocAcceptanceTax] (
+    [Id]                             VARCHAR (20)     NOT NULL,
+    [PurchaseDocAcceptanceId]        VARCHAR (10)     NULL,
+    [PurchaseDocAcceptanceDetailId]  VARCHAR (10)     NULL,
+    [PurchaseDocAcceptanceServiceId] VARCHAR (10)     NULL,
+    [TaxCategoryId]                  VARCHAR (10)     NOT NULL,
+    [HSNCodeId]                      VARCHAR (10)     NULL,
+    [Percentage]                     DECIMAL (18, 10) NOT NULL,
+    [TaxAmount]                      DECIMAL (18, 10) NOT NULL,
+    [AddedBy]                        VARCHAR (30)     NOT NULL,
+    [AddedDate]                      DATETIME         NOT NULL,
+    [AddedFromIP]                    VARCHAR (15)     NOT NULL,
+    [UpdatedBy]                      VARCHAR (30)     NULL,
+    [UpdatedDate]                    DATETIME         NULL,
+    [UpdatedFromIP]                  VARCHAR (15)     NULL,
+    [PODetailId]                     VARCHAR (10)     NULL,
+    [PurchaseDocAcceptanceChargesId] VARCHAR (10)     NULL,
+    CONSTRAINT [PK_PurchaseDocAcceptanceTax] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_HSNCode] FOREIGN KEY ([HSNCodeId]) REFERENCES [HKP].[HSNCode] ([Id]),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_PODetail] FOREIGN KEY ([PODetailId]) REFERENCES [TRN].[PurchaseOrderDetail] ([Id]),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_PurchaseDocAcceptance] FOREIGN KEY ([PurchaseDocAcceptanceId]) REFERENCES [TRN].[PurchaseDocAcceptance] ([Id]),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_PurchaseDocAcceptanceDetail] FOREIGN KEY ([PurchaseDocAcceptanceDetailId]) REFERENCES [TRN].[PurchaseDocAcceptanceDetail] ([Id]),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_PurchaseDocAcceptanceService] FOREIGN KEY ([PurchaseDocAcceptanceServiceId]) REFERENCES [TRN].[PurchaseDocAcceptanceService] ([Id]),
+    CONSTRAINT [FK_PurchaseDocAcceptanceTax_TaxCategory] FOREIGN KEY ([TaxCategoryId]) REFERENCES [MST].[TaxCategory] ([Id])
+);
+

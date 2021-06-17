@@ -1,0 +1,35 @@
+﻿CREATE PROCEDURE [SCS].[Country_update]
+	@P_1 VarChar(10),
+	@P_2 VarChar(10),
+	@P_3 VarChar(10),
+	@P_4 Decimal(18,2),
+	@P_5 VarChar(10),
+	@P_6 VarChar(15),
+	@P_7 VarChar(15),
+	@P_8 VarChar(50),
+	@P_9 VarChar(50),
+	@P_10 VarChar(50),
+	@P_11 Int,
+	@P_12 Int,
+	@P_13 VarChar(30),
+	@P_14 VarChar(30),
+	@P_15 Int,
+	@P_16 Int,
+	@P_17 Int,
+	@P_18 VarChar(250),
+	@P_19 VarChar(250),
+	@P_20 Bit,
+	@P_21 Bit,
+	@P_22 VarChar(30),
+	@P_23 DateTime,
+	@P_24 VarChar(15),
+	@P_25 VarChar(30),
+	@P_26 DateTime,
+	@P_27 VarChar(15),
+	@sync_force_write Int,
+	@sync_min_timestamp BigInt,
+	@sync_row_count Int OUTPUT
+AS
+BEGIN
+SET @sync_row_count = 0; UPDATE [SCS].[Country] SET [ContinentId] = @P_2, [CurrencyId] = @P_3, [Sequence] = @P_4, [ICC] = @P_5, [Code] = @P_6, [ShortName] = @P_7, [StandardName] = @P_8, [UserName] = @P_9, [Nationality] = @P_10, [GMTMinute] = @P_11, [GMTHour] = @P_12, [TINCaption] = @P_13, [NIDCaption] = @P_14, [PhoneLength] = @P_15, [NIDLength] = @P_16, [TINLength] = @P_17, [Description] = @P_18, [Remarks] = @P_19, [Active] = @P_20, [Archive] = @P_21, [AddedBy] = @P_22, [AddedDate] = @P_23, [AddedFromIP] = @P_24, [UpdatedBy] = @P_25, [UpdatedDate] = @P_26, [UpdatedFromIP] = @P_27 FROM [SCS].[Country] [base] JOIN [SCS].[Country_tracking] [side] ON [base].[Id] = [side].[Id] WHERE ([side].[local_update_peer_timestamp] <= @sync_min_timestamp OR @sync_force_write = 1) AND ([base].[Id] = @P_1); SET @sync_row_count = @@ROWCOUNT;
+END

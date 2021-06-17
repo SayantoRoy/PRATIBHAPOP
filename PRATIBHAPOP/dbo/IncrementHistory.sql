@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[IncrementHistory] (
+    [SystemID]               VARCHAR (50) NOT NULL,
+    [EmpSystemID]            VARCHAR (30) NOT NULL,
+    [IncrementType]          VARCHAR (50) NOT NULL,
+    [IsConfirmation]         BIT          NULL,
+    [ConfirmationDate]       DATETIME     NULL,
+    [ConfirmationCode]       VARCHAR (30) NULL,
+    [FromSalaryId]           VARCHAR (30) NULL,
+    [ToSalaryId]             VARCHAR (30) NULL,
+    [FromGivenDesignationId] VARCHAR (30) NULL,
+    [ToGivenDesignationId]   VARCHAR (30) NULL,
+    [FromLegalDesignationId] VARCHAR (30) NULL,
+    [ToLegalDesignationId]   VARCHAR (30) NULL,
+    [FromEffectiveDate]      DATETIME     NULL,
+    [ToEffectiveDate]        DATETIME     NULL,
+    [FromBudgetCode]         VARCHAR (30) NULL,
+    [ToBudgetCode]           VARCHAR (30) NULL,
+    [IsApproved]             BIT          NULL,
+    [AddedBy]                VARCHAR (30) NOT NULL,
+    [AddedDate]              DATETIME     NOT NULL,
+    [AddedFromIP]            VARCHAR (30) NOT NULL,
+    [UpdatedBy]              VARCHAR (30) NULL,
+    [UpdatedDate]            DATETIME     NULL,
+    [UpdatedFromIP]          VARCHAR (30) NULL,
+    CONSTRAINT [PK__Incremen__9394F6AA03E276EC] PRIMARY KEY CLUSTERED ([SystemID] ASC)
+);
+

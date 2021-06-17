@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[OrderPreCostingDirectMaterialConsumption] (
+    [Id]                              INT             IDENTITY (1, 1) NOT NULL,
+    [CostingItemId]                   VARCHAR (10)    NULL,
+    [OrderPreCostingDirectMaterialId] VARCHAR (10)    NULL,
+    [OrderCostingMasterTemplateId]    VARCHAR (10)    NULL,
+    [GSMValue]                        DECIMAL (18, 4) NULL,
+    [ComponentName]                   VARCHAR (100)   NULL,
+    [AreaType]                        VARCHAR (20)    NULL,
+    [NoOfParts]                       DECIMAL (10, 2) NULL,
+    [ParameterName]                   VARCHAR (20)    NULL,
+    [Parameter]                       VARCHAR (100)   NULL,
+    [Actual]                          DECIMAL (18, 6) NULL,
+    [Allowance]                       DECIMAL (18, 6) NULL,
+    [NoOfParameter]                   DECIMAL (10, 2) NULL,
+    [Total]                           DECIMAL (18, 6) NULL,
+    [AddedBy]                         VARCHAR (30)    NOT NULL,
+    [AddedDate]                       DATETIME        NOT NULL,
+    [AddedFromIP]                     VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                       VARCHAR (30)    NULL,
+    [UpdatedDate]                     DATETIME        NULL,
+    [UpdatedFromIP]                   VARCHAR (15)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([CostingItemId]) REFERENCES [HKP].[CostingItem] ([Id]),
+    FOREIGN KEY ([OrderCostingMasterTemplateId]) REFERENCES [dbo].[OrderCostingMasterTemplate] ([Id])
+);
+

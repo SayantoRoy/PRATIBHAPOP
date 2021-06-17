@@ -1,0 +1,27 @@
+﻿CREATE TABLE [HKP].[AccountGroup] (
+    [Id]              VARCHAR (10)    NOT NULL,
+    [CompanyGroupId]  VARCHAR (10)    NOT NULL,
+    [COAId]           VARCHAR (10)    NOT NULL,
+    [AccountTypeId]   VARCHAR (50)    NULL,
+    [Sequence]        DECIMAL (18, 2) NOT NULL,
+    [Code]            VARCHAR (10)    NOT NULL,
+    [StandardName]    VARCHAR (50)    NOT NULL,
+    [UserName]        VARCHAR (50)    NOT NULL,
+    [FromNumberRange] INT             NOT NULL,
+    [ToNumberRange]   INT             NOT NULL,
+    [Description]     VARCHAR (250)   NULL,
+    [Remarks]         VARCHAR (250)   NULL,
+    [Active]          BIT             NOT NULL,
+    [Archive]         BIT             NOT NULL,
+    [AddedBy]         VARCHAR (30)    NOT NULL,
+    [AddedDate]       DATETIME        NOT NULL,
+    [AddedFromIP]     VARCHAR (15)    NOT NULL,
+    [UpdatedBy]       VARCHAR (30)    NULL,
+    [UpdatedDate]     DATETIME        NULL,
+    [UpdatedFromIP]   VARCHAR (15)    NULL,
+    CONSTRAINT [PK_AccountGroup] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_AccountGroup_AccountType] FOREIGN KEY ([AccountTypeId]) REFERENCES [HKP].[AccountType] ([Id]),
+    CONSTRAINT [FK_AccountGroup_COA] FOREIGN KEY ([COAId]) REFERENCES [HKP].[COA] ([Id]),
+    CONSTRAINT [FK_AccountGroup_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id])
+);
+

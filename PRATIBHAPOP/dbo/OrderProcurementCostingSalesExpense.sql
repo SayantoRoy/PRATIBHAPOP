@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[OrderProcurementCostingSalesExpense] (
+    [Id]                           VARCHAR (10)    NOT NULL,
+    [CostingItemId]                VARCHAR (10)    NULL,
+    [OrderCostingMasterTemplateId] VARCHAR (10)    NULL,
+    [Type]                         VARCHAR (20)    NULL,
+    [Value]                        DECIMAL (18, 5) NULL,
+    [Amount]                       DECIMAL (18, 5) NULL,
+    [Description]                  VARCHAR (250)   NULL,
+    [AddedBy]                      VARCHAR (30)    NOT NULL,
+    [AddedDate]                    DATETIME        NOT NULL,
+    [AddedFromIP]                  VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                    VARCHAR (30)    NULL,
+    [UpdatedDate]                  DATETIME        NULL,
+    [UpdatedFromIP]                VARCHAR (15)    NULL,
+    [ResponsiblePersoinId]         VARCHAR (30)    NULL,
+    [FileName]                     NVARCHAR (100)  NULL,
+    [FileOriginalName]             NVARCHAR (100)  NULL,
+    CONSTRAINT [PK_OrderProcurementCostingSalesExpense] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProfitOrderProcurementCostingSalesExpense_CostingItem] FOREIGN KEY ([CostingItemId]) REFERENCES [HKP].[CostingItem] ([Id]),
+    CONSTRAINT [FK_ProfitOrderProcurementCostingSalesExpense_EmployeeInformation] FOREIGN KEY ([ResponsiblePersoinId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_TRK0OrderProcurementCostingSalesExpense_CostingItem] FOREIGN KEY ([CostingItemId]) REFERENCES [HKP].[CostingItem] ([Id]),
+    CONSTRAINT [FK_TRK0OrderProcurementCostingSalesExpense_EmployeeInformation] FOREIGN KEY ([ResponsiblePersoinId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_TRK0OrderProcurementCostingSalesExpense_OrderCostingMasterTemplate] FOREIGN KEY ([OrderCostingMasterTemplateId]) REFERENCES [dbo].[OrderCostingMasterTemplate] ([Id])
+);
+

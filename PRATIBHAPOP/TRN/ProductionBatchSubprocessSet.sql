@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[ProductionBatchSubprocessSet] (
+    [Id]                               VARCHAR (30) NOT NULL,
+    [SubProcessSetDetailId]            VARCHAR (10) NULL,
+    [ProductionBatchProcessCriteriaId] VARCHAR (30) NULL,
+    [CompanyGroupId]                   VARCHAR (10) NULL,
+    [CompanyId]                        VARCHAR (10) NULL,
+    [EntityId]                         VARCHAR (10) NULL,
+    [ProductionBatchMasterId]          VARCHAR (30) NULL,
+    [ProcessId]                        VARCHAR (10) NULL,
+    [ProcessTypeId]                    VARCHAR (10) NULL,
+    [SubProcessSetId]                  VARCHAR (10) NULL,
+    [AddedBy]                          VARCHAR (30) NOT NULL,
+    [AddedDate]                        DATETIME     NOT NULL,
+    [AddedFromIP]                      VARCHAR (15) NOT NULL,
+    [UpdatedBy]                        VARCHAR (30) NULL,
+    [UpdatedDate]                      DATETIME     NULL,
+    [UpdatedFromIP]                    VARCHAR (15) NULL,
+    CONSTRAINT [PK_ProductionBatchSubprocessSet] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_Process] FOREIGN KEY ([ProcessId]) REFERENCES [HKP].[Process] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_ProcessType] FOREIGN KEY ([ProcessTypeId]) REFERENCES [HKP].[ProcessType] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_ProductionBatchMaster] FOREIGN KEY ([ProductionBatchMasterId]) REFERENCES [TRN].[ProductionOrder] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_ProductionBatchProcessCriteria] FOREIGN KEY ([ProductionBatchProcessCriteriaId]) REFERENCES [TRN].[ProductionBatchProcessCriteria] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_SubProcessSet] FOREIGN KEY ([SubProcessSetId]) REFERENCES [HKP].[SubProcessSet] ([Id]),
+    CONSTRAINT [FK_ProductionBatchSubprocessSet_SubProcessSetDetail] FOREIGN KEY ([SubProcessSetDetailId]) REFERENCES [HKP].[SubProcessSetDetail] ([Id])
+);
+

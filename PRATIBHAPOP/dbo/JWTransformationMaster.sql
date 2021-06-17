@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[JWTransformationMaster] (
+    [Id]                  VARCHAR (20)    NOT NULL,
+    [Sequence]            DECIMAL (18, 2) NULL,
+    [JWActivityId]        VARCHAR (20)    NOT NULL,
+    [ResponsiblePersonId] VARCHAR (30)    NULL,
+    [OutputMaterialId]    VARCHAR (30)    NOT NULL,
+    [OutputMaterialUOMId] VARCHAR (10)    NOT NULL,
+    [RateApplicableOn]    VARCHAR (30)    NOT NULL,
+    [CurrencyId]          VARCHAR (10)    NULL,
+    [MinRate]             DECIMAL (18, 2) NULL,
+    [MaxRate]             DECIMAL (18, 2) NULL,
+    [CycleTimeDays]       INT             NULL,
+    [ByProductApplicable] BIT             NULL,
+    [Remarks]             VARCHAR (250)   NULL,
+    [AddedDate]           DATETIME        NOT NULL,
+    [AddedFromIP]         VARCHAR (15)    NOT NULL,
+    [UpdatedBy]           VARCHAR (30)    NULL,
+    [UpdatedDate]         DATETIME        NULL,
+    [UpdatedFromIP]       VARCHAR (15)    NULL,
+    [AddedBy]             VARCHAR (30)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([CurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    FOREIGN KEY ([JWActivityId]) REFERENCES [dbo].[JWActivity] ([Id]),
+    FOREIGN KEY ([OutputMaterialId]) REFERENCES [MST].[MaterialMaster] ([Id]),
+    FOREIGN KEY ([OutputMaterialUOMId]) REFERENCES [SCS].[UnitOfMeasurement] ([Id]),
+    FOREIGN KEY ([ResponsiblePersonId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

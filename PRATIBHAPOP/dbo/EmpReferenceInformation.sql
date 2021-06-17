@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[EmpReferenceInformation] (
+    [SystemID]            VARCHAR (30)  NOT NULL,
+    [EmpSystemID]         VARCHAR (30)  NOT NULL,
+    [Ref1Name]            VARCHAR (150) NULL,
+    [Ref1EmployerName]    VARCHAR (150) NULL,
+    [Ref1EmployerAddress] VARCHAR (300) NULL,
+    [Ref1Designation]     VARCHAR (100) NULL,
+    [Ref1CellPhnNo]       VARCHAR (30)  NULL,
+    [Ref1TelePhnNo]       VARCHAR (30)  NULL,
+    [Ref1Email]           VARCHAR (50)  NULL,
+    [Ref1Address]         VARCHAR (300) NULL,
+    [Ref2Name]            VARCHAR (150) NULL,
+    [Ref2EmployerName]    VARCHAR (150) NULL,
+    [Ref2EmployerAddress] VARCHAR (300) NULL,
+    [Ref2Designation]     VARCHAR (100) NULL,
+    [Ref2CellPhnNo]       VARCHAR (30)  NULL,
+    [Ref2TelePhnNo]       VARCHAR (30)  NULL,
+    [Ref2Email]           VARCHAR (50)  NULL,
+    [Ref2Address]         VARCHAR (300) NULL,
+    [AddedBy]             VARCHAR (100) NOT NULL,
+    [DateAdded]           DATETIME      NOT NULL,
+    [UpdatedBy]           VARCHAR (100) NULL,
+    [DateUpdated]         DATETIME      NULL,
+    CONSTRAINT [PK_EmpReferenceInformation] PRIMARY KEY CLUSTERED ([SystemID] ASC),
+    CONSTRAINT [FK_EmpReferenceInformation_EmployeeInformation] FOREIGN KEY ([EmpSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

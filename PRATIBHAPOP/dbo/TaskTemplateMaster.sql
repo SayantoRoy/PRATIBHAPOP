@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[TaskTemplateMaster] (
+    [Id]            VARCHAR (30)    NOT NULL,
+    [Sequence]      DECIMAL (18, 2) NOT NULL,
+    [Code]          VARCHAR (10)    NOT NULL,
+    [ShortName]     VARCHAR (15)    NOT NULL,
+    [StandardName]  VARCHAR (50)    NOT NULL,
+    [UserName]      VARCHAR (50)    NOT NULL,
+    [Description]   VARCHAR (250)   NULL,
+    [Remarks]       VARCHAR (250)   NULL,
+    [Active]        BIT             NOT NULL,
+    [EmployeeId]    VARCHAR (30)    NULL,
+    [PlantId]       VARCHAR (10)    NULL,
+    [AddedBy]       VARCHAR (30)    NOT NULL,
+    [AddedDate]     DATETIME        NOT NULL,
+    [AddedFromIP]   VARCHAR (15)    NOT NULL,
+    [UpdatedBy]     VARCHAR (30)    NULL,
+    [UpdatedDate]   DATETIME        NULL,
+    [UpdatedFromIP] VARCHAR (15)    NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK__TaskTempl__Emplo__2296B1AB] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK__TaskTempl__Emplo__58BDB832] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK__TaskTempl__Emplo__7D3022D2] FOREIGN KEY ([EmployeeId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

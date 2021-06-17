@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[ServiceGroupPartyAccountGroupGL] (
+    [Id]                  VARCHAR (10) NOT NULL,
+    [ServiceGroupGLId]    VARCHAR (10) NULL,
+    [ServiceGroupId]      VARCHAR (10) NULL,
+    [PartyAccountGroupId] VARCHAR (10) NULL,
+    [GLGeneralInfoId]     VARCHAR (10) NULL,
+    [BudgetMasterId]      VARCHAR (20) NULL,
+    [ActivityId]          VARCHAR (10) NULL,
+    [AccountType]         VARCHAR (10) NOT NULL,
+    [GLType]              VARCHAR (20) NOT NULL,
+    [AddedBy]             VARCHAR (30) NOT NULL,
+    [AddedDate]           DATETIME     NOT NULL,
+    [AddedFromIP]         VARCHAR (15) NOT NULL,
+    [UpdatedBy]           VARCHAR (30) NULL,
+    [UpdatedDate]         DATETIME     NULL,
+    [UpdatedFromIP]       VARCHAR (15) NULL,
+    CONSTRAINT [PK_ServiceGroupPartyAccountGroupGL] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_Activity] FOREIGN KEY ([ActivityId]) REFERENCES [HKP].[Activity] ([Id]),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_BudgetMaster_BudgetMasterId] FOREIGN KEY ([BudgetMasterId]) REFERENCES [MST].[BudgetMaster] ([Id]),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_GLGeneralInfo] FOREIGN KEY ([GLGeneralInfoId]) REFERENCES [HKP].[GLGeneralInfo] ([Id]),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_PartyAccountGroup] FOREIGN KEY ([PartyAccountGroupId]) REFERENCES [HKP].[PartyAccountGroup] ([Id]),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_ServiceGroup_ServiceGroupId] FOREIGN KEY ([ServiceGroupId]) REFERENCES [HKP].[ServiceGroup] ([Id]),
+    CONSTRAINT [FK_ServiceGroupPartyAccountGroupGL_ServiceGroupGL] FOREIGN KEY ([ServiceGroupGLId]) REFERENCES [HKP].[ServiceGroupGL] ([Id])
+);
+

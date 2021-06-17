@@ -1,0 +1,27 @@
+﻿CREATE TABLE [MST].[ContactMaster] (
+    [Id]                       VARCHAR (20)  NOT NULL,
+    [ContactPerson]            VARCHAR (100) NULL,
+    [ContactPersonDesignation] VARCHAR (30)  NULL,
+    [Phone1]                   VARCHAR (20)  NULL,
+    [Phone2]                   VARCHAR (20)  NULL,
+    [Phone3]                   VARCHAR (20)  NULL,
+    [Fax]                      VARCHAR (50)  NULL,
+    [Email1]                   VARCHAR (50)  NULL,
+    [Email2]                   VARCHAR (50)  NULL,
+    [Email3]                   VARCHAR (50)  NULL,
+    [Website]                  VARCHAR (50)  NULL,
+    [Category]                 VARCHAR (50)  NULL,
+    [SubCategory]              VARCHAR (50)  NULL,
+    [Type]                     VARCHAR (50)  NULL,
+    [ResponsiblePerson]        VARCHAR (50)  NULL,
+    [Active]                   BIT           NOT NULL,
+    [Archive]                  BIT           NOT NULL,
+    [AddedBy]                  VARCHAR (30)  NOT NULL,
+    [AddedDate]                DATETIME      NOT NULL,
+    [AddedFromIP]              VARCHAR (15)  NOT NULL,
+    [UpdatedBy]                VARCHAR (30)  NULL,
+    [UpdatedDate]              DATETIME      NULL,
+    [UpdatedFromIP]            VARCHAR (15)  NULL,
+    CONSTRAINT [PK_ContactMaster] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

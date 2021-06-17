@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[InquiryItem] (
+    [Id]               VARCHAR (10)    NOT NULL,
+    [InquiryMasterId]  VARCHAR (30)    NOT NULL,
+    [MaterialMasterId] VARCHAR (30)    NULL,
+    [ArticleId]        VARCHAR (10)    NULL,
+    [BuyerReferenceNo] VARCHAR (20)    NULL,
+    [OwnReferenceNo]   VARCHAR (20)    NULL,
+    [ProjectedQty]     DECIMAL (18, 2) NULL,
+    [AddedBy]          VARCHAR (30)    NULL,
+    [AddedDate]        DATETIME        NULL,
+    [AddedFromIP]      VARCHAR (15)    NULL,
+    [UpdatedBy]        VARCHAR (30)    NULL,
+    [UpdatedDate]      DATETIME        NULL,
+    [UpdatedFromIP]    VARCHAR (15)    NULL,
+    [Type]             VARCHAR (15)    NULL,
+    [IsRepeat]         BIT             CONSTRAINT [DF__InquiryIt__IsRep__377F21FD] DEFAULT ((0)) NULL,
+    [NoOfSample]       DECIMAL (18, 4) NULL,
+    [Remarks]          VARCHAR (100)   NULL,
+    [InquiryProcess]   VARCHAR (10)    NULL,
+    [Particulars]      VARCHAR (50)    NULL,
+    [CostingRequired]  BIT             NULL,
+    CONSTRAINT [PK_InquiryItem] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_InquiryItem_Article] FOREIGN KEY ([ArticleId]) REFERENCES [MST].[MaterialMasterArticle] ([Id]),
+    CONSTRAINT [FK_InquiryItem_InquiryMaster] FOREIGN KEY ([InquiryMasterId]) REFERENCES [TRN].[InquiryMaster] ([Id]),
+    CONSTRAINT [FK_InquiryItem_MaterialMaster] FOREIGN KEY ([MaterialMasterId]) REFERENCES [MST].[MaterialMaster] ([Id])
+);
+

@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[TaxPolicyGeneral] (
+    [SystemID]                   VARCHAR (30)    NOT NULL,
+    [TaxPolicyMstID]             VARCHAR (30)    NULL,
+    [SalaryHeadID]               VARCHAR (30)    NULL,
+    [IsTaxable]                  BIT             CONSTRAINT [DF_TaxPolicyGeneral_IsTaxable] DEFAULT ((0)) NOT NULL,
+    [IsFixedTaxGeneral]          BIT             CONSTRAINT [DF_TaxPolicyGeneral_IsFixedTaxGeneral] DEFAULT ((0)) NOT NULL,
+    [TaxFixedGeneral]            INT             NULL,
+    [IsPercentageTaxGeneral]     BIT             CONSTRAINT [DF_TaxPolicyGeneral_IsPercentageTaxGeneral] DEFAULT ((0)) NOT NULL,
+    [TaxPercentageGeneral]       NUMERIC (18, 2) NULL,
+    [IsExemption]                BIT             CONSTRAINT [DF_TaxPolicyGeneral_IsExemption] DEFAULT ((0)) NOT NULL,
+    [IsExmWhichEverLess]         BIT             CONSTRAINT [DF_TaxPolicyGeneral_ExmWhichEverLess] DEFAULT ((0)) NOT NULL,
+    [IsMaxExmpAmt]               BIT             CONSTRAINT [DF_TaxPolicyGeneral_IsMaxExmpAmt] DEFAULT ((0)) NOT NULL,
+    [TaxMaxExmpAmt]              NUMERIC (18, 2) NULL,
+    [IsExmBaseOnActual]          BIT             CONSTRAINT [DF_TaxPolicyGeneral_ExmBaseOnActual] DEFAULT ((0)) NOT NULL,
+    [IsExmBaseOnOtherSlrHd]      BIT             CONSTRAINT [DF_TaxPolicyGeneral_ExmBaseOnOtherSlrHd] DEFAULT ((0)) NOT NULL,
+    [ExmSalaryHeadID]            VARCHAR (30)    NULL,
+    [PercentageExmAmtOtherSlrHd] NUMERIC (18, 2) NULL,
+    [AddedBy]                    VARCHAR (100)   NOT NULL,
+    [DateAdded]                  DATETIME        NOT NULL,
+    [UpdatedBy]                  VARCHAR (100)   NULL,
+    [DateUpdated]                DATETIME        NULL,
+    CONSTRAINT [PK_TaxPolicyGeneral] PRIMARY KEY CLUSTERED ([SystemID] ASC),
+    CONSTRAINT [FK_TaxPolicyGeneral_SalaryHead] FOREIGN KEY ([SalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID]),
+    CONSTRAINT [FK_TaxPolicyGeneral_SalaryHead1] FOREIGN KEY ([ExmSalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID]),
+    CONSTRAINT [FK_TaxPolicyGeneral_TaxPolicyMaster] FOREIGN KEY ([TaxPolicyMstID]) REFERENCES [dbo].[TaxPolicyMaster] ([SystemID])
+);
+

@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[EmployeeAdvanceRequisition] (
+    [SystemId]                VARCHAR (10)    NOT NULL,
+    [EmpSystemId]             VARCHAR (30)    NULL,
+    [CurrencyId]              VARCHAR (10)    NULL,
+    [RequisitionAddedDate]    DATETIME        NULL,
+    [RequisitionRequiredDate] DATETIME        NULL,
+    [Amount]                  DECIMAL (18, 2) NOT NULL,
+    [ApprovalStatus]          VARCHAR (20)    NULL,
+    [Remarks]                 VARCHAR (250)   NULL,
+    [Reason]                  VARCHAR (100)   NULL,
+    [IsPost]                  BIT             DEFAULT ((0)) NOT NULL,
+    [CheckedBy]               VARCHAR (30)    NULL,
+    [ApprovedBy]              VARCHAR (30)    NULL,
+    [AddedBy]                 VARCHAR (30)    NULL,
+    [AddedDate]               DATETIME        NULL,
+    [AddedFromIP]             VARCHAR (15)    NULL,
+    [UpdatedBy]               VARCHAR (30)    NULL,
+    [UpdatedDate]             DATETIME        NULL,
+    [UpdatedFromIP]           VARCHAR (15)    NULL,
+    [ToBeCheckedRetrieve]     BIT             NULL,
+    [ToBeApporvedRetrieve]    BIT             NULL,
+    [AdvanceType]             VARCHAR (25)    NULL,
+    CONSTRAINT [PK_EmployeeAdvanceRequisition] PRIMARY KEY CLUSTERED ([SystemId] ASC),
+    CONSTRAINT [FK_EmployeeAdvanceRequisition_Currency] FOREIGN KEY ([CurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_EmployeeAdvanceRequisition_EmployeeInformation] FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

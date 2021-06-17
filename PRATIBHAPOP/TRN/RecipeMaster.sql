@@ -1,0 +1,26 @@
+﻿CREATE TABLE [TRN].[RecipeMaster] (
+    [Id]                      VARCHAR (30)    NOT NULL,
+    [Description]             VARCHAR (100)   NULL,
+    [Code]                    VARCHAR (10)    NULL,
+    [UserName]                VARCHAR (20)    NULL,
+    [MaterialMasterId]        VARCHAR (10)    NULL,
+    [ProcessId]               VARCHAR (10)    NULL,
+    [BatchSize]               DECIMAL (18, 3) NULL,
+    [UOM]                     VARCHAR (10)    NULL,
+    [Characteristics1Id]      VARCHAR (10)    NULL,
+    [Characteristics2Id]      VARCHAR (10)    NULL,
+    [Characteristics3Id]      VARCHAR (10)    NULL,
+    [Characteristics1ValueId] VARCHAR (10)    NULL,
+    [Characteristics2ValueId] VARCHAR (10)    NULL,
+    [Characteristics3ValueId] VARCHAR (10)    NULL,
+    [CompanyId]               VARCHAR (10)    NULL,
+    [CompanyGroupId]          VARCHAR (10)    NULL,
+    [AddedBy]                 VARCHAR (30)    NOT NULL,
+    [AddedDate]               DATETIME        NOT NULL,
+    [AddedFromIP]             VARCHAR (15)    NOT NULL,
+    [UpdatedBy]               VARCHAR (30)    NULL,
+    [UpdatedDate]             DATETIME        NULL,
+    [UpdatedFromIP]           VARCHAR (15)    NULL,
+    CONSTRAINT [PK_RecipeMaster] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

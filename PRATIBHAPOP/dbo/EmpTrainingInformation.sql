@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[EmpTrainingInformation] (
+    [SystemID]             VARCHAR (30)  NOT NULL,
+    [EmpSystemID]          VARCHAR (30)  NOT NULL,
+    [TrainingTitle]        VARCHAR (150) NULL,
+    [TopicCovered]         VARCHAR (150) NULL,
+    [InstituteName]        VARCHAR (150) NULL,
+    [CountrySystemID]      VARCHAR (30)  NULL,
+    [Location]             VARCHAR (200) NULL,
+    [TrainingYear]         INT           NULL,
+    [Duration]             INT           NULL,
+    [DurationUOM]          VARCHAR (10)  NULL,
+    [AddedBy]              VARCHAR (100) NOT NULL,
+    [DateAdded]            DATETIME      NOT NULL,
+    [UpdatedBy]            VARCHAR (100) NULL,
+    [DateUpdated]          DATETIME      NULL,
+    [FileId]               VARCHAR (50)  NULL,
+    [FileName]             VARCHAR (50)  NULL,
+    [IsTrainingApproved]   BIT           DEFAULT ((0)) NOT NULL,
+    [ApprovedBy]           VARCHAR (50)  NULL,
+    [ApprovedFromIP]       VARCHAR (50)  NULL,
+    [ApprovedDateTime]     DATETIME      NULL,
+    [ComplianceDocumentId] VARCHAR (10)  NULL,
+    CONSTRAINT [PK_EmpTrainingInformation] PRIMARY KEY CLUSTERED ([SystemID] ASC),
+    CONSTRAINT [FK_EmpTrainingInformation_ComplianceDocument] FOREIGN KEY ([ComplianceDocumentId]) REFERENCES [HKP].[ComplianceDocument] ([Id]),
+    CONSTRAINT [FK_EmpTrainingInformation_EmployeeInformation] FOREIGN KEY ([EmpSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

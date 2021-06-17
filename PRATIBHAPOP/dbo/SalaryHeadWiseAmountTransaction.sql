@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[SalaryHeadWiseAmountTransaction] (
+    [Id]                            VARCHAR (30)    NOT NULL,
+    [PlantId]                       VARCHAR (10)    NOT NULL,
+    [WorkDate]                      DATETIME        NULL,
+    [EmpSystemId]                   VARCHAR (30)    NOT NULL,
+    [SalaryHeadWiseAmountSettingId] VARCHAR (30)    NOT NULL,
+    [YearNo]                        VARCHAR (10)    NULL,
+    [MonthNo]                       VARCHAR (10)    NULL,
+    [FromDate]                      DATETIME        NULL,
+    [ToDate]                        DATETIME        NULL,
+    [Amount]                        DECIMAL (18, 2) DEFAULT ((0)) NOT NULL,
+    [AddedBy]                       VARCHAR (30)    NOT NULL,
+    [AddedDate]                     DATETIME        NOT NULL,
+    [AddedFromIP]                   VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                     VARCHAR (30)    NULL,
+    [UpdatedDate]                   DATETIME        NULL,
+    [UpdatedFromIP]                 VARCHAR (15)    NULL,
+    [EffectiveDate]                 DATETIME        NULL,
+    [Particulars]                   VARCHAR (100)   NULL,
+    CONSTRAINT [PK_SalaryHeadWiseAmountTransaction] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_DailyAllowanceTransaction_SalaryHeadWiseAmountSetting] FOREIGN KEY ([SalaryHeadWiseAmountSettingId]) REFERENCES [dbo].[SalaryHeadWiseAmountSetting] ([Id]),
+    CONSTRAINT [FK_SalaryHeadWiseAmountTransaction_EmployeeInformation] FOREIGN KEY ([EmpSystemId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_SalaryHeadWiseAmountTransaction_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id])
+);
+

@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[EmpDateWiseShiftAssign] (
+    [EmpSystemID]         VARCHAR (30)  NOT NULL,
+    [WorkDate]            DATETIME      NOT NULL,
+    [GroupID]             VARCHAR (10)  NULL,
+    [EmpSftAssiSystemID]  VARCHAR (30)  NULL,
+    [ShiftSystemID]       VARCHAR (30)  NULL,
+    [RosterShiftDayCount] INT           CONSTRAINT [DF_EmpDateWiseShiftAssign_RosterShiftDayCount] DEFAULT ((0)) NOT NULL,
+    [DayType]             VARCHAR (10)  NULL,
+    [AddedBy]             VARCHAR (100) NOT NULL,
+    [DateAdded]           DATETIME      NOT NULL,
+    [UpdatedBy]           VARCHAR (100) NULL,
+    [DateUpdated]         DATETIME      NULL,
+    [BudgetedShiftId]     VARCHAR (30)  NULL,
+    [ProfileShiftId]      VARCHAR (30)  NULL,
+    [PlannedShiftId]      VARCHAR (30)  NULL,
+    [ManualShiftId]       VARCHAR (30)  NULL,
+    CONSTRAINT [PK_EmpDateWiseShiftAssign_1] PRIMARY KEY CLUSTERED ([EmpSystemID] ASC, [WorkDate] ASC),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_CompanyGroup] FOREIGN KEY ([GroupID]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_EmployeeInformation] FOREIGN KEY ([EmpSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_EmployeeShiftAssign] FOREIGN KEY ([EmpSftAssiSystemID]) REFERENCES [dbo].[EmployeeShiftAssign] ([SystemID]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_Shiftb] FOREIGN KEY ([BudgetedShiftId]) REFERENCES [dbo].[ShiftDefination] ([SystemID]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_ShiftDefination] FOREIGN KEY ([ShiftSystemID]) REFERENCES [dbo].[ShiftDefination] ([SystemID]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_Shiftm] FOREIGN KEY ([ManualShiftId]) REFERENCES [dbo].[ShiftDefination] ([SystemID]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_Shiftp] FOREIGN KEY ([ProfileShiftId]) REFERENCES [dbo].[ShiftDefination] ([SystemID]),
+    CONSTRAINT [FK_EmpDateWiseShiftAssign_Shiftpp] FOREIGN KEY ([PlannedShiftId]) REFERENCES [dbo].[ShiftDefination] ([SystemID])
+);
+

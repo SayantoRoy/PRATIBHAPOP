@@ -1,0 +1,26 @@
+﻿CREATE TABLE [SCS].[City] (
+    [Id]            VARCHAR (10)    NOT NULL,
+    [CountryId]     VARCHAR (10)    NULL,
+    [Sequence]      DECIMAL (18, 2) NOT NULL,
+    [Code]          VARCHAR (15)    NOT NULL,
+    [ShortName]     VARCHAR (15)    NOT NULL,
+    [StandardName]  VARCHAR (50)    NOT NULL,
+    [UserName]      VARCHAR (50)    NOT NULL,
+    [Description]   VARCHAR (250)   NULL,
+    [Remarks]       VARCHAR (250)   NULL,
+    [Active]        BIT             NOT NULL,
+    [Archive]       BIT             NOT NULL,
+    [AddedBy]       VARCHAR (30)    NOT NULL,
+    [AddedDate]     DATETIME        NOT NULL,
+    [AddedFromIP]   VARCHAR (15)    NOT NULL,
+    [UpdatedBy]     VARCHAR (30)    NULL,
+    [UpdatedDate]   DATETIME        NULL,
+    [UpdatedFromIP] VARCHAR (15)    NULL,
+    [StateId]       VARCHAR (10)    NULL,
+    [DistrictId]    VARCHAR (10)    NULL,
+    CONSTRAINT [PK_City] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_City_Country] FOREIGN KEY ([CountryId]) REFERENCES [SCS].[Country] ([Id]),
+    CONSTRAINT [FK_City_District] FOREIGN KEY ([DistrictId]) REFERENCES [SCS].[District] ([Id]),
+    CONSTRAINT [FK_City_State] FOREIGN KEY ([StateId]) REFERENCES [SCS].[State] ([Id])
+);
+

@@ -1,0 +1,26 @@
+﻿CREATE TABLE [TRN].[InventorySalesTax] (
+    [Id]                       VARCHAR (50)     NOT NULL,
+    [InventorySalesHistoryId]  VARCHAR (50)     NULL,
+    [InventoryReceiveDetailId] VARCHAR (50)     NULL,
+    [TaxCategoryId]            VARCHAR (10)     NOT NULL,
+    [HSNCodeId]                VARCHAR (10)     NULL,
+    [Percentage]               DECIMAL (18, 10) NOT NULL,
+    [TaxAmount]                DECIMAL (18, 10) NOT NULL,
+    [AddedBy]                  VARCHAR (30)     NOT NULL,
+    [AddedDate]                DATETIME         NOT NULL,
+    [AddedFromIP]              VARCHAR (15)     NOT NULL,
+    [UpdatedBy]                VARCHAR (30)     NULL,
+    [UpdatedDate]              DATETIME         NULL,
+    [UpdatedFromIP]            VARCHAR (15)     NULL,
+    [InventorySalesId]         VARCHAR (50)     NOT NULL,
+    [InventorySalesServiceId]  VARCHAR (50)     NULL,
+    [BooksCurrencyTaxAmount]   DECIMAL (18, 2)  NULL,
+    CONSTRAINT [PK_InventorySalesTax] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_InventorySalesTax_HSNCode] FOREIGN KEY ([HSNCodeId]) REFERENCES [HKP].[HSNCode] ([Id]),
+    CONSTRAINT [FK_InventorySalesTax_InventoryReceiveDetail] FOREIGN KEY ([InventoryReceiveDetailId]) REFERENCES [TRN].[InventoryReceiveDetail] ([Id]),
+    CONSTRAINT [FK_InventorySalesTax_InventorySalesHistoryId] FOREIGN KEY ([InventorySalesHistoryId]) REFERENCES [TRN].[InventorySalesHistory] ([Id]),
+    CONSTRAINT [FK_InventorySalesTax_InventorySalesId] FOREIGN KEY ([InventorySalesId]) REFERENCES [TRN].[InventorySales] ([Id]),
+    CONSTRAINT [FK_InventorySalesTax_InventorySalesServiceI] FOREIGN KEY ([InventorySalesServiceId]) REFERENCES [TRN].[InventorySalesService] ([Id]),
+    CONSTRAINT [FK_InventorySalesTax_TaxCategory] FOREIGN KEY ([TaxCategoryId]) REFERENCES [MST].[TaxCategory] ([Id])
+);
+

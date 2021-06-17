@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[EntityConfig] (
+    [Id]                       VARCHAR (10)    NOT NULL,
+    [EntityId]                 VARCHAR (10)    NULL,
+    [StandardName]             VARCHAR (50)    NULL,
+    [UserName]                 VARCHAR (50)    NULL,
+    [Value]                    INT             CONSTRAINT [DF_EntityConfig_Value] DEFAULT ((0)) NOT NULL,
+    [IsChangeable]             BIT             CONSTRAINT [DF_EntityConfig_IsChangeable] DEFAULT ((0)) NOT NULL,
+    [AddedBy]                  VARCHAR (30)    NOT NULL,
+    [AddedDate]                DATETIME        NOT NULL,
+    [AddedFromIP]              VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                VARCHAR (30)    NULL,
+    [UpdatedDate]              DATETIME        NULL,
+    [UpdatedFromIP]            VARCHAR (15)    NULL,
+    [IsProductionEntity]       BIT             DEFAULT ((0)) NOT NULL,
+    [NoOfWorkStation]          INT             DEFAULT ((0)) NOT NULL,
+    [FixedCost]                DECIMAL (18)    DEFAULT ((0)) NOT NULL,
+    [VariableCost]             DECIMAL (18)    DEFAULT ((0)) NOT NULL,
+    [MachineCostPerHour]       DECIMAL (18, 4) DEFAULT ((0)) NULL,
+    [MinFixedCost]             DECIMAL (18, 4) DEFAULT ((0)) NULL,
+    [GeneralWorkingHourPerDay] DECIMAL (18, 2) DEFAULT ((0)) NULL,
+    [CurrencyId]               VARCHAR (10)    NULL,
+    [ConsumptionBooking]       VARCHAR (20)    NULL,
+    [ConsumptionProcessId]     VARCHAR (10)    NULL,
+    CONSTRAINT [PK_EntityConfig] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_EntityConfig_Currency] FOREIGN KEY ([CurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_EntityConfig_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id])
+);
+

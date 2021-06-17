@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[BankCharge] (
+    [Id]                VARCHAR (30)    NOT NULL,
+    [BankJournalId]     VARCHAR (20)    NULL,
+    [BankMasterId]      VARCHAR (10)    NULL,
+    [FinancingTypeId]   VARCHAR (10)    NULL,
+    [Narration]         VARCHAR (250)   NULL,
+    [Amount]            DECIMAL (18, 4) NOT NULL,
+    [Archive]           BIT             NOT NULL,
+    [AddedBy]           VARCHAR (30)    NOT NULL,
+    [AddedDate]         DATETIME        NOT NULL,
+    [AddedFromIP]       VARCHAR (15)    NOT NULL,
+    [UpdatedBy]         VARCHAR (30)    NULL,
+    [UpdatedDate]       DATETIME        NULL,
+    [UpdatedFromIP]     VARCHAR (15)    NULL,
+    [AdvanceWriteOffId] VARCHAR (20)    NULL,
+    [CashMasterId]      VARCHAR (10)    NULL,
+    [AdvanceId]         VARCHAR (10)    NULL,
+    [SourceType]        VARCHAR (30)    NULL,
+    [InvoiceWriteOffId] VARCHAR (50)    NULL,
+    CONSTRAINT [PK_BankCharge] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_BankCharge_Advance] FOREIGN KEY ([AdvanceId]) REFERENCES [TRN].[Advance] ([Id]),
+    CONSTRAINT [FK_BankCharge_BankJournal] FOREIGN KEY ([BankJournalId]) REFERENCES [TRN].[BankJournal] ([Id]),
+    CONSTRAINT [FK_BankCharge_BankMaster] FOREIGN KEY ([BankMasterId]) REFERENCES [MST].[BankMaster] ([Id]),
+    CONSTRAINT [FK_BankCharge_CashMaster] FOREIGN KEY ([CashMasterId]) REFERENCES [MST].[CashMaster] ([Id]),
+    CONSTRAINT [FK_BankCharge_FinancingType] FOREIGN KEY ([FinancingTypeId]) REFERENCES [HKP].[FinancingType] ([Id]),
+    CONSTRAINT [FK_BankCharge_InvoiceWriteOff] FOREIGN KEY ([InvoiceWriteOffId]) REFERENCES [TRN].[InvoiceWriteOff] ([Id])
+);
+

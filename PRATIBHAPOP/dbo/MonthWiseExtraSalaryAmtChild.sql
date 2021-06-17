@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[MonthWiseExtraSalaryAmtChild] (
+    [SystemID]                VARCHAR (30)    NOT NULL,
+    [MWESAMasterSystemID]     VARCHAR (30)    NOT NULL,
+    [CurrencyRuleSystemID]    VARCHAR (30)    NULL,
+    [SalaryHeadID]            VARCHAR (30)    NOT NULL,
+    [EntryCurrencyID]         VARCHAR (10)    NULL,
+    [EntryAmount]             NUMERIC (18, 4) NOT NULL,
+    [DefineCurrencyID]        VARCHAR (10)    NULL,
+    [DefineAmount]            NUMERIC (18, 4) NULL,
+    [AmtDefinitionCurrencyID] VARCHAR (10)    NULL,
+    [AmtDefinitionRate]       NUMERIC (18, 4) NULL,
+    [ExtDataUploadApp]        VARCHAR (3)     CONSTRAINT [DF_MonthWiseExtraSalaryAmtChild_ExtDataUploadApp] DEFAULT ('No') NOT NULL,
+    [AddedBy]                 VARCHAR (100)   NOT NULL,
+    [DateAdded]               DATETIME        NOT NULL,
+    [UpdatedBy]               VARCHAR (100)   NULL,
+    [DateUpdated]             DATETIME        NULL,
+    CONSTRAINT [PK_MonthWiseExtraSalaryAmount] PRIMARY KEY CLUSTERED ([SystemID] ASC) WITH (FILLFACTOR = 90),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_Currency] FOREIGN KEY ([EntryCurrencyID]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_Currency1] FOREIGN KEY ([DefineCurrencyID]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_Currency2] FOREIGN KEY ([AmtDefinitionCurrencyID]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_CurrencyRuleMaster] FOREIGN KEY ([CurrencyRuleSystemID]) REFERENCES [dbo].[CurrencyRuleMaster] ([SystemID]),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_MonthWiseExtraSalaryAmtMaster] FOREIGN KEY ([MWESAMasterSystemID]) REFERENCES [dbo].[MonthWiseExtraSalaryAmtMaster] ([SystemID]),
+    CONSTRAINT [FK_MonthWiseExtraSalaryAmtChild_SalaryHead] FOREIGN KEY ([SalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID])
+);
+

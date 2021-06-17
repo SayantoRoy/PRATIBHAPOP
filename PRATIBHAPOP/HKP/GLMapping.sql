@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[GLMapping] (
+    [Id]             INT           IDENTITY (1, 1) NOT NULL,
+    [CompanyGroupId] VARCHAR (10)  NOT NULL,
+    [CompanyId]      VARCHAR (10)  NOT NULL,
+    [PlantId]        VARCHAR (10)  NOT NULL,
+    [BudgetMasterId] VARCHAR (20)  NULL,
+    [ActivityId]     VARCHAR (10)  NULL,
+    [OldGLId]        VARCHAR (60)  NULL,
+    [OldGLCode]      VARCHAR (60)  NULL,
+    [OldGLName]      VARCHAR (200) NULL,
+    [AddedBy]        VARCHAR (30)  NOT NULL,
+    [AddedDate]      DATETIME      NOT NULL,
+    [AddedFromIP]    VARCHAR (15)  NOT NULL,
+    [UpdatedBy]      VARCHAR (30)  NULL,
+    [UpdatedDate]    DATETIME      NULL,
+    [UpdatedFromIP]  VARCHAR (15)  NULL,
+    [PartyType]      VARCHAR (20)  NULL,
+    CONSTRAINT [PK_GLMapping] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_GLMapping_Activity] FOREIGN KEY ([ActivityId]) REFERENCES [HKP].[Activity] ([Id]),
+    CONSTRAINT [FK_GLMapping_BudgetMaster] FOREIGN KEY ([BudgetMasterId]) REFERENCES [MST].[BudgetMaster] ([Id]),
+    CONSTRAINT [FK_GLMapping_Company] FOREIGN KEY ([CompanyId]) REFERENCES [ORG].[Company] ([Id]),
+    CONSTRAINT [FK_GLMapping_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_GLMapping_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id])
+);
+

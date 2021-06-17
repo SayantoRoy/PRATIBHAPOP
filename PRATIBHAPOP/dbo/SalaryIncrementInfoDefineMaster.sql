@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[SalaryIncrementInfoDefineMaster] (
+    [SystemID]              VARCHAR (30)  NOT NULL,
+    [EmpInfoSystemID]       VARCHAR (30)  NOT NULL,
+    [SalaryID]              VARCHAR (30)  NULL,
+    [PrevSalaryID]          VARCHAR (30)  NULL,
+    [GroupID]               VARCHAR (10)  NULL,
+    [PlantID]               VARCHAR (10)  NULL,
+    [PrevSlrRulMstSystemID] VARCHAR (30)  NULL,
+    [PrevEffectiveDate]     DATETIME      NULL,
+    [SlrRulMstSystemID]     VARCHAR (30)  NULL,
+    [EffectiveDate]         DATETIME      NULL,
+    [IsApproved]            BIT           CONSTRAINT [DF_SalaryIncrementInfoDefineMaster_IsApproved] DEFAULT ((0)) NOT NULL,
+    [ApprovedBy]            VARCHAR (100) NULL,
+    [DateApproved]          DATETIME      NULL,
+    [AddedBy]               VARCHAR (100) NOT NULL,
+    [DateAdded]             DATETIME      NOT NULL,
+    [UpdatedBy]             VARCHAR (100) NULL,
+    [DateUpdated]           DATETIME      NULL,
+    CONSTRAINT [PK_SalaryIncrementInfoDefineMaster] PRIMARY KEY CLUSTERED ([SystemID] ASC),
+    CONSTRAINT [FK_SalaryIncrementInfoDefineMaster_CompanyGroup] FOREIGN KEY ([GroupID]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_SalaryIncrementInfoDefineMaster_EmpInformation] FOREIGN KEY ([EmpInfoSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_SalaryIncrementInfoDefineMaster_Plant] FOREIGN KEY ([PlantID]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK_SalaryIncrementInfoDefineMaster_SalaryRuleMaster] FOREIGN KEY ([SlrRulMstSystemID]) REFERENCES [dbo].[SalaryRuleMaster] ([SystemID]),
+    CONSTRAINT [FK_SalaryIncrementInfoDefineMaster_SalaryRuleMaster1] FOREIGN KEY ([PrevSlrRulMstSystemID]) REFERENCES [dbo].[SalaryRuleMaster] ([SystemID])
+);
+

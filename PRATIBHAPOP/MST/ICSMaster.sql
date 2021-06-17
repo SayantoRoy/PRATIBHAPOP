@@ -1,0 +1,28 @@
+﻿CREATE TABLE [MST].[ICSMaster] (
+    [Id]                  VARCHAR (20)  NOT NULL,
+    [RegistrationCode]    VARCHAR (20)  NOT NULL,
+    [Group]               VARCHAR (30)  NOT NULL,
+    [Name]                VARCHAR (50)  NOT NULL,
+    [LicenseNumber]       VARCHAR (50)  NOT NULL,
+    [RegistrationID]      VARCHAR (50)  NOT NULL,
+    [RegistrationDate]    VARCHAR (15)  NOT NULL,
+    [RenewalPeriod]       VARCHAR (20)  NOT NULL,
+    [UserInfo1]           VARCHAR (50)  NULL,
+    [UserInfo2]           VARCHAR (50)  NULL,
+    [Remarks]             VARCHAR (250) NULL,
+    [ResponsiblePersonId] VARCHAR (30)  NULL,
+    [DebitGL]             VARCHAR (30)  NULL,
+    [CreditGL]            VARCHAR (30)  NULL,
+    [FileName]            VARCHAR (100) NULL,
+    [AddedBy]             VARCHAR (30)  NOT NULL,
+    [AddedDate]           DATETIME      NOT NULL,
+    [AddedFromIP]         VARCHAR (15)  NOT NULL,
+    [UpdatedBy]           VARCHAR (30)  NULL,
+    [UpdatedDate]         DATETIME      NULL,
+    [UpdatedFromIP]       VARCHAR (15)  NULL,
+    [EntityId]            VARCHAR (10)  NULL,
+    CONSTRAINT [PK_ICSMaster] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ICSMaster_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_ICSMaster_ResponsiblePerson] FOREIGN KEY ([ResponsiblePersonId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

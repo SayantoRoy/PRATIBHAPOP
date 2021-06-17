@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[MaterialGroupPartyAccountGroupGL] (
+    [Id]                    VARCHAR (10) NOT NULL,
+    [MaterialGroupGLId]     VARCHAR (10) NULL,
+    [MaterialGroupMasterId] VARCHAR (10) NULL,
+    [PartyAccountGroupId]   VARCHAR (10) NULL,
+    [GLGeneralInfoId]       VARCHAR (10) NULL,
+    [BudgetMasterId]        VARCHAR (20) NULL,
+    [ActivityId]            VARCHAR (10) NULL,
+    [AccountType]           VARCHAR (10) NOT NULL,
+    [GLType]                VARCHAR (20) NOT NULL,
+    [AddedBy]               VARCHAR (30) NOT NULL,
+    [AddedDate]             DATETIME     NOT NULL,
+    [AddedFromIP]           VARCHAR (15) NOT NULL,
+    [UpdatedBy]             VARCHAR (30) NULL,
+    [UpdatedDate]           DATETIME     NULL,
+    [UpdatedFromIP]         VARCHAR (15) NULL,
+    CONSTRAINT [PK_MaterialGroupPartyAccountGroupGL] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_Activity] FOREIGN KEY ([ActivityId]) REFERENCES [HKP].[Activity] ([Id]),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_BudgetMaster] FOREIGN KEY ([BudgetMasterId]) REFERENCES [MST].[BudgetMaster] ([Id]),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_GLGeneralInfo] FOREIGN KEY ([GLGeneralInfoId]) REFERENCES [HKP].[GLGeneralInfo] ([Id]),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_MaterialGroupGL] FOREIGN KEY ([MaterialGroupGLId]) REFERENCES [HKP].[MaterialGroupGL] ([Id]),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_MaterialGroupMaster] FOREIGN KEY ([MaterialGroupMasterId]) REFERENCES [MST].[MaterialGroupMaster] ([Id]),
+    CONSTRAINT [FK_MaterialGroupPartyAccountGroupGL_PartyAccountGroup] FOREIGN KEY ([PartyAccountGroupId]) REFERENCES [HKP].[PartyAccountGroup] ([Id])
+);
+

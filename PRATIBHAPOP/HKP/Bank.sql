@@ -1,0 +1,27 @@
+﻿CREATE TABLE [HKP].[Bank] (
+    [Id]              VARCHAR (10)    NOT NULL,
+    [AddressMasterId] VARCHAR (20)    NULL,
+    [ContactMasterId] VARCHAR (20)    NULL,
+    [Sequence]        DECIMAL (18, 2) NOT NULL,
+    [Code]            VARCHAR (10)    NOT NULL,
+    [ShortName]       VARCHAR (15)    NOT NULL,
+    [StandardName]    VARCHAR (100)   NOT NULL,
+    [UserName]        VARCHAR (100)   NOT NULL,
+    [RoutingNo]       VARCHAR (15)    NULL,
+    [SWIFTCode]       VARCHAR (15)    NULL,
+    [Description]     VARCHAR (250)   NULL,
+    [Remarks]         VARCHAR (250)   NULL,
+    [Active]          BIT             NOT NULL,
+    [Archive]         BIT             NOT NULL,
+    [AddedBy]         VARCHAR (30)    NOT NULL,
+    [AddedDate]       DATETIME        NOT NULL,
+    [AddedFromIP]     VARCHAR (15)    NOT NULL,
+    [UpdatedBy]       VARCHAR (30)    NULL,
+    [UpdatedDate]     DATETIME        NULL,
+    [UpdatedFromIP]   VARCHAR (15)    NULL,
+    [CheckTemplate]   VARCHAR (50)    NULL,
+    CONSTRAINT [PK_Bank] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Bank_AddressMaster] FOREIGN KEY ([AddressMasterId]) REFERENCES [MST].[AddressMaster] ([Id]),
+    CONSTRAINT [FK_Bank_ContactMaster] FOREIGN KEY ([ContactMasterId]) REFERENCES [MST].[ContactMaster] ([Id])
+);
+

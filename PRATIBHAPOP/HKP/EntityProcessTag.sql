@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[EntityProcessTag] (
+    [Id]                     VARCHAR (10) NOT NULL,
+    [EntityId]               VARCHAR (10) NOT NULL,
+    [ProcessId]              VARCHAR (10) NOT NULL,
+    [AddedBy]                VARCHAR (30) NOT NULL,
+    [AddedDate]              DATETIME     NOT NULL,
+    [AddedFromIP]            VARCHAR (15) NOT NULL,
+    [UpdatedBy]              VARCHAR (30) NULL,
+    [UpdatedDate]            DATETIME     NULL,
+    [UpdatedFromIP]          VARCHAR (15) NULL,
+    [IsFinishGoods]          BIT          DEFAULT ((0)) NOT NULL,
+    [ProcessNature]          VARCHAR (10) NULL,
+    [ProductionBookingLevel] VARCHAR (15) NULL,
+    [LotNumberCapture]       BIT          DEFAULT ((0)) NOT NULL,
+    [LotNumberMandatory]     BIT          DEFAULT ((0)) NOT NULL,
+    [IsPackingSKURequired]   BIT          DEFAULT ((0)) NOT NULL,
+    [PackingForm]            VARCHAR (50) NULL,
+    [IsDispatchSKURequired]  BIT          DEFAULT ((0)) NOT NULL,
+    [DispatchForm]           VARCHAR (50) NULL,
+    [DispatchType]           VARCHAR (50) NULL,
+    CONSTRAINT [PK_EntityProcessTag] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_EntityProcessTag_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_EntityProcessTag_Process] FOREIGN KEY ([ProcessId]) REFERENCES [HKP].[Process] ([Id])
+);
+

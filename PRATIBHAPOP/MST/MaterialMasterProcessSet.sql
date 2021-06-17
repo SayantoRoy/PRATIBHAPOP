@@ -1,0 +1,28 @@
+﻿CREATE TABLE [MST].[MaterialMasterProcessSet] (
+    [Id]                    VARCHAR (10)    NOT NULL,
+    [MaterialMasterId]      VARCHAR (30)    NOT NULL,
+    [ProcessId]             VARCHAR (10)    NOT NULL,
+    [AddedBy]               VARCHAR (30)    NOT NULL,
+    [AddedDate]             DATETIME        NOT NULL,
+    [AddedFromIP]           VARCHAR (15)    NOT NULL,
+    [UpdatedBy]             VARCHAR (30)    NULL,
+    [UpdatedDate]           DATETIME        NULL,
+    [UpdatedFromIP]         VARCHAR (15)    NULL,
+    [Sequence]              DECIMAL (18, 2) NULL,
+    [IsBaseProcess]         BIT             NOT NULL,
+    [Days]                  INT             NOT NULL,
+    [Symbol]                VARCHAR (1)     NULL,
+    [ProductionCycleTime]   INT             NOT NULL,
+    [JobWorkApplicable]     BIT             NOT NULL,
+    [JobWorkType]           VARCHAR (50)    NULL,
+    [EntityIdWithinCompany] VARCHAR (10)    NULL,
+    [EntityIdWithinGroup]   VARCHAR (10)    NULL,
+    [PartyId]               VARCHAR (10)    NULL,
+    CONSTRAINT [PK_MaterialMasterProcess] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_MaterialMasterProcess_MaterialMaster] FOREIGN KEY ([MaterialMasterId]) REFERENCES [MST].[MaterialMaster] ([Id]),
+    CONSTRAINT [FK_MaterialMasterProcess_Process] FOREIGN KEY ([ProcessId]) REFERENCES [HKP].[Process] ([Id]),
+    CONSTRAINT [FK_MaterialMasterProcessSet_EntityIdWithinCompany] FOREIGN KEY ([EntityIdWithinCompany]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_MaterialMasterProcessSet_EntityIdWithinGroup] FOREIGN KEY ([EntityIdWithinGroup]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_MaterialMasterProcessSet_Party] FOREIGN KEY ([PartyId]) REFERENCES [HKP].[Party] ([Id])
+);
+

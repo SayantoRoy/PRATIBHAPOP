@@ -1,0 +1,26 @@
+﻿CREATE TABLE [MST].[BuyerMasterActivity] (
+    [Id]                  VARCHAR (10) NOT NULL,
+    [BuyerMasterDetailId] VARCHAR (10) NOT NULL,
+    [BuyerActivityId]     VARCHAR (10) NOT NULL,
+    [EmployeeOneId]       VARCHAR (30) NOT NULL,
+    [EmployeeTwoId]       VARCHAR (30) NOT NULL,
+    [EmployeeThreeId]     VARCHAR (30) NOT NULL,
+    [EmployeeFourId]      VARCHAR (30) NOT NULL,
+    [EmployeeFiveId]      VARCHAR (30) NOT NULL,
+    [Active]              BIT          NOT NULL,
+    [AddedBy]             VARCHAR (30) NOT NULL,
+    [AddedDate]           DATETIME     NOT NULL,
+    [AddedFromIP]         VARCHAR (15) NOT NULL,
+    [UpdatedBy]           VARCHAR (30) NULL,
+    [UpdatedDate]         DATETIME     NULL,
+    [UpdatedFromIP]       VARCHAR (15) NULL,
+    CONSTRAINT [PK_BuyerMasterActivity] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_BuyerMasterActivity_BuyerMasterActivity] FOREIGN KEY ([BuyerActivityId]) REFERENCES [SCS].[OrderActivity] ([Id]),
+    CONSTRAINT [FK_BuyerMasterActivity_BuyerMasterDetail] FOREIGN KEY ([BuyerMasterDetailId]) REFERENCES [MST].[BuyerMasterDetail] ([Id]),
+    CONSTRAINT [FK_BuyerMasterActivity_EmployeeInformation_EmployeeFive] FOREIGN KEY ([EmployeeFiveId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_BuyerMasterActivity_EmployeeInformation_EmployeeFourId] FOREIGN KEY ([EmployeeFourId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_BuyerMasterActivity_EmployeeInformation_EmployeeOneId] FOREIGN KEY ([EmployeeOneId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_BuyerMasterActivity_EmployeeInformation_EmployeeThreeId] FOREIGN KEY ([EmployeeThreeId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_BuyerMasterActivity_EmployeeInformation_EmployeeTwoId] FOREIGN KEY ([EmployeeTwoId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

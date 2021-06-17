@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[FinancingSchedule] (
+    [Id]                       VARCHAR (13)     NOT NULL,
+    [FinancingId]              VARCHAR (10)     NOT NULL,
+    [InstallmentDate]          DATETIME         NOT NULL,
+    [OldInstallmentDate]       DATETIME         NULL,
+    [InstallmentNo]            INT              NOT NULL,
+    [InstallmentAmount]        DECIMAL (18, 10) NOT NULL,
+    [ProfitAmount]             DECIMAL (18, 10) NOT NULL,
+    [PrincipalAmount]          DECIMAL (18, 10) NOT NULL,
+    [OtherAmount]              DECIMAL (18, 10) NOT NULL,
+    [TaxAmount]                DECIMAL (18, 10) NOT NULL,
+    [Balance]                  DECIMAL (18, 10) NOT NULL,
+    [IsRepaid]                 BIT              NOT NULL,
+    [IsReScheduled]            BIT              NOT NULL,
+    [IsDeferred]               BIT              NOT NULL,
+    [DeferredAdjustmentNumber] INT              NOT NULL,
+    [Arrear]                   DECIMAL (18, 10) NOT NULL,
+    [ScheduleNo]               INT              NOT NULL,
+    [AddedBy]                  VARCHAR (30)     NOT NULL,
+    [AddedDate]                DATETIME         NOT NULL,
+    [AddedFromIP]              VARCHAR (15)     NOT NULL,
+    [UpdatedBy]                VARCHAR (30)     NULL,
+    [UpdatedDate]              DATETIME         NULL,
+    [UpdatedFromIP]            VARCHAR (15)     NULL,
+    CONSTRAINT [PK_FinancingSchedule] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_FinancingSchedule_Financing] FOREIGN KEY ([FinancingId]) REFERENCES [TRN].[Financing] ([Id])
+);
+

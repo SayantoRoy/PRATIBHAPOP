@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[POMaterial] (
+    [Id]                           VARCHAR (10)     NOT NULL,
+    [CompanyGroupId]               VARCHAR (10)     NOT NULL,
+    [CompanyId]                    VARCHAR (10)     NOT NULL,
+    [PlantId]                      VARCHAR (10)     NOT NULL,
+    [MaterialStorageId]            VARCHAR (10)     NULL,
+    [MaterialMasterId]             VARCHAR (30)     NULL,
+    [ArticleId]                    VARCHAR (10)     NULL,
+    [FirstCharacteristicsId]       VARCHAR (10)     NULL,
+    [FirstCharacteristicsValueId]  VARCHAR (10)     NULL,
+    [SecondCharacteristicsId]      VARCHAR (10)     NULL,
+    [SecondCharacteristicsValueId] VARCHAR (10)     NULL,
+    [ThirdCharacteristicsId]       VARCHAR (10)     NULL,
+    [ThirdCharacteristicsValueId]  VARCHAR (10)     NULL,
+    [TotalQty]                     DECIMAL (18, 10) NOT NULL,
+    [AvgRate]                      DECIMAL (18, 10) NOT NULL,
+    [AddedBy]                      VARCHAR (30)     NOT NULL,
+    [AddedDate]                    DATETIME         NOT NULL,
+    [AddedFromIP]                  VARCHAR (15)     NOT NULL,
+    [UpdatedBy]                    VARCHAR (30)     NULL,
+    [UpdatedDate]                  DATETIME         NULL,
+    [UpdatedFromIP]                VARCHAR (15)     NULL,
+    [OpeningBalanceId]             VARCHAR (30)     NULL,
+    [CountryId]                    VARCHAR (10)     NULL,
+    [VendorArticulationId]         VARCHAR (10)     NULL
+);
+

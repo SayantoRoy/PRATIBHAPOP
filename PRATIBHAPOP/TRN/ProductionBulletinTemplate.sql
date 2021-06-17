@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[ProductionBulletinTemplate] (
+    [Id]                 VARCHAR (10)  NOT NULL,
+    [CompanyGroupId]     VARCHAR (10)  NOT NULL,
+    [ProductionOrderId]  VARCHAR (30)  NULL,
+    [BulletinName]       VARCHAR (50)  NOT NULL,
+    [AlternativeName]    VARCHAR (50)  NULL,
+    [ByWhom]             VARCHAR (50)  NOT NULL,
+    [ProductMasterId]    VARCHAR (10)  NOT NULL,
+    [SizeGroupId]        VARCHAR (10)  NOT NULL,
+    [AddedBy]            VARCHAR (30)  NOT NULL,
+    [AddedDate]          DATETIME      NOT NULL,
+    [AddedFromIP]        VARCHAR (15)  NOT NULL,
+    [UpdatedBy]          VARCHAR (30)  NULL,
+    [UpdatedDate]        DATETIME      NULL,
+    [UpdatedFromIP]      VARCHAR (15)  NULL,
+    [BulletinTemplateId] VARCHAR (10)  NULL,
+    [ParentId]           VARCHAR (10)  NULL,
+    [PicFileName]        VARCHAR (250) NULL,
+    CONSTRAINT [PK_ProductionBulletinTemplate] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProductionBulletinTemplate_BulletinTemplate] FOREIGN KEY ([BulletinTemplateId]) REFERENCES [MST].[BulletinTemplate] ([Id]),
+    CONSTRAINT [FK_ProductionBulletinTemplate_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_ProductionBulletinTemplate_Parent] FOREIGN KEY ([ParentId]) REFERENCES [TRN].[ProductionBulletinTemplate] ([Id]),
+    CONSTRAINT [FK_ProductionBulletinTemplate_ProductionOrder] FOREIGN KEY ([ProductionOrderId]) REFERENCES [TRN].[ProductionOrder] ([Id]),
+    CONSTRAINT [FK_ProductionBulletinTemplate_ProductMaster] FOREIGN KEY ([ProductMasterId]) REFERENCES [MST].[ProductMaster] ([Id]),
+    CONSTRAINT [FK_ProductionBulletinTemplate_SizeGroup] FOREIGN KEY ([SizeGroupId]) REFERENCES [HKP].[SizeGroup] ([Id])
+);
+

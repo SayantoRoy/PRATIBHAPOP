@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[ESICPolicyDetails] (
+    [ID]                                         VARCHAR (20)    NOT NULL,
+    [ESICPolicyMasterID]                         VARCHAR (20)    NOT NULL,
+    [FormulaDesEarning]                          VARCHAR (1000)  NULL,
+    [FormulaDesIDEarning]                        VARCHAR (500)   NULL,
+    [SalaryHeadIDEarning]                        VARCHAR (500)   NULL,
+    [EarningValueRangeFrom]                      INT             NULL,
+    [EarningValueRangeTo]                        INT             NULL,
+    [IsMandatory]                                BIT             CONSTRAINT [DF_ESICPolicyDetails_IsMandatory] DEFAULT ((0)) NULL,
+    [IsFixedEmp]                                 BIT             NULL,
+    [FixedValueEmp]                              NUMERIC (18, 2) NULL,
+    [IsFormulaEmp]                               BIT             NULL,
+    [IsContributionSlrHDdependOnEarningEmp]      BIT             CONSTRAINT [DF_ESICPolicyDetails_IsContributionSlrHDdependOnEarningEmp] DEFAULT ((0)) NOT NULL,
+    [FormulaDesEmp]                              VARCHAR (1000)  NULL,
+    [FormulaDesIDEmp]                            VARCHAR (500)   NULL,
+    [SalaryHeadIDEmp]                            VARCHAR (500)   NULL,
+    [IsFixedEmployer]                            BIT             NULL,
+    [FixedValueEmployer]                         NUMERIC (18, 2) NULL,
+    [IsFormulaEmployer]                          BIT             NULL,
+    [IsContributionSlrHDdependOnEarningEmployer] BIT             NULL,
+    [FormulaDesEmployer]                         VARCHAR (1000)  NULL,
+    [FormulaDesIDEmployer]                       VARCHAR (500)   NULL,
+    [SalaryHeadIDEmployer]                       VARCHAR (500)   NULL,
+    CONSTRAINT [PK_ESICPolicyDetails] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

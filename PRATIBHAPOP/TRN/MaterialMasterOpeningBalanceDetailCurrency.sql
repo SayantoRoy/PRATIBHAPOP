@@ -1,0 +1,25 @@
+﻿CREATE TABLE [TRN].[MaterialMasterOpeningBalanceDetailCurrency] (
+    [Id]                                   VARCHAR (70)     NOT NULL,
+    [OpeningBalanceId]                     VARCHAR (30)     NOT NULL,
+    [MaterialMasterOpeningBalanceDetailId] VARCHAR (50)     NULL,
+    [ParallelCurrencyId]                   VARCHAR (10)     NOT NULL,
+    [FromCurrencyId]                       VARCHAR (10)     NOT NULL,
+    [ToCurrencyId]                         VARCHAR (10)     NOT NULL,
+    [ToCurrencyRate]                       DECIMAL (18, 10) NOT NULL,
+    [ToCurrencyConversion]                 DECIMAL (18, 10) NOT NULL,
+    [Amount]                               DECIMAL (18, 10) NOT NULL,
+    [GLType]                               VARCHAR (20)     NOT NULL,
+    [AddedBy]                              VARCHAR (30)     NOT NULL,
+    [AddedDate]                            DATETIME         NOT NULL,
+    [AddedFromIP]                          VARCHAR (15)     NOT NULL,
+    [UpdatedBy]                            VARCHAR (30)     NULL,
+    [UpdatedDate]                          DATETIME         NULL,
+    [UpdatedFromIP]                        VARCHAR (15)     NULL,
+    CONSTRAINT [PK_MaterialMasterOpeningBalanceDetailCurrency] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_MaterialMasterOpeningBalanceDetailCurrency_FromCurrency] FOREIGN KEY ([FromCurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_MaterialMasterOpeningBalanceDetailCurrency_MaterialMasterOpeningBalanceDetail] FOREIGN KEY ([MaterialMasterOpeningBalanceDetailId]) REFERENCES [TRN].[MaterialMasterOpeningBalanceDetail] ([Id]),
+    CONSTRAINT [FK_MaterialMasterOpeningBalanceDetailCurrency_OpeningBalance] FOREIGN KEY ([OpeningBalanceId]) REFERENCES [TRN].[OpeningBalance] ([Id]),
+    CONSTRAINT [FK_MaterialMasterOpeningBalanceDetailCurrency_ParallelCurrency] FOREIGN KEY ([ParallelCurrencyId]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_MaterialMasterOpeningBalanceDetailCurrency_ToCurrency] FOREIGN KEY ([ToCurrencyId]) REFERENCES [SCS].[Currency] ([Id])
+);
+

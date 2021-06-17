@@ -1,0 +1,25 @@
+﻿CREATE TABLE [TRN].[ProductionOrderSubprocessSet] (
+    [Id]                               VARCHAR (30) NOT NULL,
+    [ProductionOrderId]                VARCHAR (30) NULL,
+    [EntityId]                         VARCHAR (10) NULL,
+    [SubProcessSetDetailId]            VARCHAR (10) NULL,
+    [ProductionOrderProcessCriteriaId] VARCHAR (30) NULL,
+    [ProcessId]                        VARCHAR (10) NULL,
+    [ProcessTypeId]                    VARCHAR (10) NULL,
+    [SubProcessSetId]                  VARCHAR (10) NULL,
+    [AddedBy]                          VARCHAR (30) NOT NULL,
+    [AddedDate]                        DATETIME     NOT NULL,
+    [AddedFromIP]                      VARCHAR (15) NOT NULL,
+    [UpdatedBy]                        VARCHAR (30) NULL,
+    [UpdatedDate]                      DATETIME     NULL,
+    [UpdatedFromIP]                    VARCHAR (15) NULL,
+    CONSTRAINT [PK_ProductionOrderSubprocessSet] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_Process] FOREIGN KEY ([ProcessId]) REFERENCES [HKP].[Process] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_ProcessType] FOREIGN KEY ([ProcessTypeId]) REFERENCES [HKP].[ProcessType] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_ProductionOrder] FOREIGN KEY ([ProductionOrderId]) REFERENCES [TRN].[ProductionOrder] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_ProductionOrderProcessCriteria] FOREIGN KEY ([ProductionOrderProcessCriteriaId]) REFERENCES [TRN].[ProductionOrderProcessCriteria] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_SubProcessSet] FOREIGN KEY ([SubProcessSetId]) REFERENCES [HKP].[SubProcessSet] ([Id]),
+    CONSTRAINT [FK_ProductionOrderSubprocessSet_SubProcessSetDetail] FOREIGN KEY ([SubProcessSetDetailId]) REFERENCES [HKP].[SubProcessSetDetail] ([Id])
+);
+

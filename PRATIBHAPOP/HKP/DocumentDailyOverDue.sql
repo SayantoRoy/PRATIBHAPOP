@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[DocumentDailyOverDue] (
+    [Id]                     INT          IDENTITY (1, 1) NOT NULL,
+    [CompanyGroupId]         VARCHAR (10) NOT NULL,
+    [CompanyId]              VARCHAR (10) NOT NULL,
+    [PlantId]                VARCHAR (10) NULL,
+    [ComplianceDocumentId]   VARCHAR (10) NULL,
+    [SourceType]             VARCHAR (20) NULL,
+    [EmployeeTypeOrCategory] VARCHAR (20) NULL,
+    [OverDue]                INT          NOT NULL,
+    [Completed]              INT          NOT NULL,
+    [Mandatory]              INT          NOT NULL,
+    [Optional]               INT          NOT NULL,
+    [DueDate]                DATETIME     NOT NULL,
+    [AddedBy]                VARCHAR (30) NOT NULL,
+    [AddedDate]              DATETIME     NOT NULL,
+    [AddedFromIP]            VARCHAR (15) NOT NULL,
+    [UpdatedBy]              VARCHAR (30) NULL,
+    [UpdatedDate]            DATETIME     NULL,
+    [UpdatedFromIP]          VARCHAR (15) NULL,
+    CONSTRAINT [PK_DocumentDailyOverDue] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_DocumentDailyOverDue_Company] FOREIGN KEY ([CompanyId]) REFERENCES [ORG].[Company] ([Id]),
+    CONSTRAINT [FK_DocumentDailyOverDue_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_DocumentDailyOverDue_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id])
+);
+

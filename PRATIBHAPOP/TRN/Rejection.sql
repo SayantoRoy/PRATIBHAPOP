@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[Rejection] (
+    [ID]                          VARCHAR (30)    NOT NULL,
+    [PlantID]                     VARCHAR (10)    NULL,
+    [ProductionBatchWorkCenterID] VARCHAR (30)    NULL,
+    [SalesOrderMasterID]          VARCHAR (20)    NULL,
+    [materialmasterID]            VARCHAR (30)    NULL,
+    [WorkCenterMasterID]          VARCHAR (30)    NULL,
+    [ResponsiblePersonID]         VARCHAR (30)    NULL,
+    [RejectionDate]               DATETIME        NULL,
+    [Quantity]                    DECIMAL (18, 4) NULL,
+    [AddedBy]                     VARCHAR (100)   NULL,
+    [AddedDate]                   DATETIME        NULL,
+    [UpdatedBy]                   VARCHAR (100)   NULL,
+    [UpdatedDate]                 DATETIME        NULL,
+    [DIM1CharacteristicsValueId]  VARCHAR (10)    NULL,
+    [DIM2CharacteristicsValueId]  VARCHAR (10)    NULL,
+    [DIM3CharacteristicsValueId]  VARCHAR (10)    NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([ProductionBatchWorkCenterID]) REFERENCES [TRN].[ProductionBatchWorkCenter] ([Id]),
+    FOREIGN KEY ([SalesOrderMasterID]) REFERENCES [TRN].[SalesOrderMaster] ([Id]),
+    CONSTRAINT [FK__Rejection__DIM1C__247E2EC6] FOREIGN KEY ([DIM1CharacteristicsValueId]) REFERENCES [HKP].[CharacteristicsValue] ([Id]),
+    CONSTRAINT [FK__Rejection__DIM2C__257252FF] FOREIGN KEY ([DIM2CharacteristicsValueId]) REFERENCES [HKP].[CharacteristicsValue] ([Id]),
+    CONSTRAINT [FK__Rejection__DIM3C__26667738] FOREIGN KEY ([DIM3CharacteristicsValueId]) REFERENCES [HKP].[CharacteristicsValue] ([Id]),
+    CONSTRAINT [FK__Rejection__Plant__275A9B71] FOREIGN KEY ([PlantID]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK__Rejection__WorkC__63B99E3B] FOREIGN KEY ([WorkCenterMasterID]) REFERENCES [SCS].[WorkCenterMaster] ([Id])
+);
+

@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[SamplePackingList] (
+    [Id]                    VARCHAR (10)  NOT NULL,
+    [PartyId]               VARCHAR (10)  NOT NULL,
+    [PlantId]               VARCHAR (10)  NULL,
+    [EntityId]              VARCHAR (10)  NULL,
+    [SalesOrganisationId]   VARCHAR (10)  NULL,
+    [InvoicingPartyPlantId] VARCHAR (12)  NOT NULL,
+    [DeliveryPartyPlantId]  VARCHAR (12)  NOT NULL,
+    [PackingDate]           DATE          NULL,
+    [InvoicingByAddress]    VARCHAR (250) NULL,
+    [DeliveryByAddress]     VARCHAR (250) NULL,
+    [PendingQty]            INT           NOT NULL,
+    [IsEntryCompleted]      BIT           NOT NULL,
+    [AddedBy]               VARCHAR (30)  NOT NULL,
+    [AddedDate]             DATETIME      NOT NULL,
+    [AddedFromIP]           VARCHAR (15)  NOT NULL,
+    [UpdatedBy]             VARCHAR (30)  NULL,
+    [UpdatedDate]           DATETIME      NULL,
+    [UpdatedFromIP]         VARCHAR (15)  NULL,
+    CONSTRAINT [PK_SamplePackingList] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_SamplePackingList_Customer] FOREIGN KEY ([PartyId]) REFERENCES [HKP].[Party] ([Id]),
+    CONSTRAINT [FK_SamplePackingList_DeliveryPartyPlantId_PartyPlant] FOREIGN KEY ([DeliveryPartyPlantId]) REFERENCES [HKP].[PartyPlant] ([Id]),
+    CONSTRAINT [FK_SamplePackingList_Entity] FOREIGN KEY ([EntityId]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_SamplePackingList_InvoicingPartyPlantId_PartyPlant] FOREIGN KEY ([InvoicingPartyPlantId]) REFERENCES [HKP].[PartyPlant] ([Id]),
+    CONSTRAINT [FK_SamplePackingList_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK_SamplePackingList_SalesOrganisation] FOREIGN KEY ([SalesOrganisationId]) REFERENCES [ORG].[SalesOrganisation] ([Id])
+);
+

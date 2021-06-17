@@ -1,0 +1,28 @@
+﻿CREATE TABLE [SCS].[DesignationGroupWiseConfiguration] (
+    [Id]                      VARCHAR (10) NOT NULL,
+    [PlantId]                 VARCHAR (10) NOT NULL,
+    [DesignationId]           VARCHAR (10) NOT NULL,
+    [DesignationGroupId]      VARCHAR (10) NOT NULL,
+    [RecruitmentProcessSetId] VARCHAR (30) NULL,
+    [SalaryRuleMasterId]      VARCHAR (30) NULL,
+    [LeavePolicyMasterId]     VARCHAR (30) NULL,
+    [CompanyGroupId]          VARCHAR (10) NOT NULL,
+    [IsOTEntitled]            BIT          NULL,
+    [AddedBy]                 VARCHAR (30) NOT NULL,
+    [AddedDate]               DATETIME     NULL,
+    [AddedFromIP]             VARCHAR (15) NOT NULL,
+    [UpdatedBy]               VARCHAR (30) NULL,
+    [UpdatedDate]             DATETIME     NULL,
+    [UpdatedFromIP]           VARCHAR (15) NULL,
+    [BnsPlcMthRetainID]       VARCHAR (20) NULL,
+    CONSTRAINT [PK_DesignationConfiguration] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_DesignationConfiguration_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_DesignationConfiguration_Designation] FOREIGN KEY ([DesignationId]) REFERENCES [HKP].[Designation] ([Id]),
+    CONSTRAINT [FK_DesignationConfiguration_DesignationGroup] FOREIGN KEY ([DesignationGroupId]) REFERENCES [HKP].[DesignationGroup] ([Id]),
+    CONSTRAINT [FK_DesignationConfiguration_LeavePolicyMaster] FOREIGN KEY ([LeavePolicyMasterId]) REFERENCES [dbo].[LeavePolicyMaster] ([SystemID]),
+    CONSTRAINT [FK_DesignationConfiguration_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK_DesignationConfiguration_RecruitmentProcessSet] FOREIGN KEY ([RecruitmentProcessSetId]) REFERENCES [MST].[RecruitmentProcessSet] ([Id]),
+    CONSTRAINT [FK_DesignationConfiguration_SalaryRuleMaster] FOREIGN KEY ([SalaryRuleMasterId]) REFERENCES [dbo].[SalaryRuleMaster] ([SystemID]),
+    CONSTRAINT [FK_DesignationGroupWiseConfiguration_BonusPolicyMonthlyRetainMaster] FOREIGN KEY ([BnsPlcMthRetainID]) REFERENCES [dbo].[BonusPolicyMonthlyRetainMaster] ([ID])
+);
+

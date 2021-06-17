@@ -1,0 +1,25 @@
+﻿CREATE TABLE [TRN].[PurchaseBookingSodaChild] (
+    [Id]                          VARCHAR (20)    NOT NULL,
+    [PurchaseBookingSodaMasterId] VARCHAR (20)    NOT NULL,
+    [Quantity]                    DECIMAL (18, 2) NOT NULL,
+    [Rate]                        DECIMAL (18, 2) NOT NULL,
+    [TargetRate]                  DECIMAL (18, 2) NOT NULL,
+    [Remarks]                     VARCHAR (250)   NULL,
+    [AddedBy]                     VARCHAR (30)    NOT NULL,
+    [AddedDate]                   DATETIME        NOT NULL,
+    [AddedFromIP]                 VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                   VARCHAR (30)    NULL,
+    [UpdatedDate]                 DATETIME        NULL,
+    [UpdatedFromIP]               VARCHAR (15)    NULL,
+    [CropPlanningChildId]         VARCHAR (20)    NOT NULL,
+    [ConfirmationQuantity]        DECIMAL (18, 2) NULL,
+    [ConfirmationRate]            DECIMAL (18, 2) NULL,
+    [ApprovedQuantity]            DECIMAL (18, 2) NULL,
+    [ApprovedRate]                DECIMAL (18, 2) NULL,
+    [PaymentQuantity]             DECIMAL (18, 2) NULL,
+    [PaymentRate]                 DECIMAL (18, 2) NULL,
+    CONSTRAINT [PK_PurchaseBookingSodaChild] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PurchaseBookingSodaChild_CropPlanningChild] FOREIGN KEY ([CropPlanningChildId]) REFERENCES [TRN].[CropPlanningChild] ([Id]),
+    CONSTRAINT [FK_PurchaseBookingSodaChild_PurchaseBookingSodaMaster] FOREIGN KEY ([PurchaseBookingSodaMasterId]) REFERENCES [TRN].[PurchaseBookingSoda] ([Id])
+);
+

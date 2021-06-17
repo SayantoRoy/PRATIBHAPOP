@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[DayStatusConfigurationChild] (
+    [Id]                   VARCHAR (30)    NOT NULL,
+    [Sequence]             DECIMAL (18, 2) NOT NULL,
+    [MasterId]             VARCHAR (30)    NOT NULL,
+    [DayStatusMasterId]    VARCHAR (30)    NOT NULL,
+    [DefaultDayStatusId]   VARCHAR (20)    NOT NULL,
+    [InStatusApplicable]   BIT             NOT NULL,
+    [OutStatusApplicable]  BIT             NOT NULL,
+    [DurationApplicable]   BIT             NOT NULL,
+    [DurationStatus]       VARCHAR (20)    NOT NULL,
+    [InStatus]             VARCHAR (30)    NOT NULL,
+    [WrongShiftApplicable] BIT             NOT NULL,
+    [WrongShiftLimit]      DECIMAL (18, 2) NULL,
+    [WrongShift]           BIT             NOT NULL,
+    [AddedBy]              VARCHAR (30)    NOT NULL,
+    [AddedDate]            DATETIME        NOT NULL,
+    [AddedFromIP]          VARCHAR (15)    NOT NULL,
+    [UpdatedBy]            VARCHAR (30)    NULL,
+    [UpdatedDate]          DATETIME        NULL,
+    [UpdatedFromIP]        VARCHAR (15)    NULL,
+    CONSTRAINT [PK_DayStatusConfigurationChild] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_DayStatusConfigurationChild_DayStatusMasterId] FOREIGN KEY ([DayStatusMasterId]) REFERENCES [dbo].[DayStatusMaster] ([Id]),
+    CONSTRAINT [FK_DayStatusConfigurationChild_DefaultDayStatusId] FOREIGN KEY ([DefaultDayStatusId]) REFERENCES [HKP].[DefaultDayStatus] ([Id]),
+    CONSTRAINT [FK_DayStatusConfigurationChild_MasterId] FOREIGN KEY ([MasterId]) REFERENCES [dbo].[DayStatusConfigurationHeader] ([Id])
+);
+

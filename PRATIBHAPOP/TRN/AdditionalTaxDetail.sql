@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[AdditionalTaxDetail] (
+    [Id]               VARCHAR (80)     NOT NULL,
+    [AdditionalTaxId]  VARCHAR (50)     NOT NULL,
+    [TaxCategoryId]    VARCHAR (10)     NULL,
+    [TaxCodeId]        VARCHAR (10)     NULL,
+    [GLGeneralInfoId]  VARCHAR (10)     NOT NULL,
+    [BudgetMasterId]   VARCHAR (20)     NULL,
+    [ActivityId]       VARCHAR (10)     NULL,
+    [AType]            VARCHAR (5)      NOT NULL,
+    [Amount]           DECIMAL (18, 10) NOT NULL,
+    [Archive]          BIT              NOT NULL,
+    [AddedBy]          VARCHAR (30)     NOT NULL,
+    [AddedDate]        DATETIME         NOT NULL,
+    [AddedFromIP]      VARCHAR (15)     NOT NULL,
+    [UpdatedBy]        VARCHAR (30)     NULL,
+    [UpdatedDate]      DATETIME         NULL,
+    [UpdatedFromIP]    VARCHAR (15)     NULL,
+    [WrittenOffAmount] DECIMAL (18, 10) DEFAULT ((0)) NOT NULL,
+    [IsWrittenOff]     BIT              DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_AdditionalTaxDetail] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_AdditionalTaxDetail_Activity] FOREIGN KEY ([ActivityId]) REFERENCES [HKP].[Activity] ([Id]),
+    CONSTRAINT [FK_AdditionalTaxDetail_AdditionalTax] FOREIGN KEY ([AdditionalTaxId]) REFERENCES [TRN].[AdditionalTax] ([Id]),
+    CONSTRAINT [FK_AdditionalTaxDetail_BudgetMaster] FOREIGN KEY ([BudgetMasterId]) REFERENCES [MST].[BudgetMaster] ([Id]),
+    CONSTRAINT [FK_AdditionalTaxDetail_GLGeneralInfo] FOREIGN KEY ([GLGeneralInfoId]) REFERENCES [HKP].[GLGeneralInfo] ([Id]),
+    CONSTRAINT [FK_AdditionalTaxDetail_TaxCategory] FOREIGN KEY ([TaxCategoryId]) REFERENCES [MST].[TaxCategory] ([Id]),
+    CONSTRAINT [FK_AdditionalTaxDetail_TaxCode] FOREIGN KEY ([TaxCodeId]) REFERENCES [MST].[TaxCode] ([Id])
+);
+

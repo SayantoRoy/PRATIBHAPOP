@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[PartyPartnerFunction] (
+    [Id]                                      VARCHAR (13) NOT NULL,
+    [PartyId]                                 VARCHAR (10) NOT NULL,
+    [VendorId]                                VARCHAR (10) NULL,
+    [CustomerId]                              VARCHAR (10) NULL,
+    [PartnerFunctionId]                       VARCHAR (10) NULL,
+    [PartnerDeterminationProcedureFunctionId] VARCHAR (10) NULL,
+    [UserName]                                VARCHAR (50) NULL,
+    [IsDefault]                               BIT          NOT NULL,
+    [PartyType]                               VARCHAR (20) NOT NULL,
+    [Active]                                  BIT          NOT NULL,
+    [AddedBy]                                 VARCHAR (30) NOT NULL,
+    [AddedDate]                               DATETIME     NOT NULL,
+    [AddedFromIP]                             VARCHAR (15) NOT NULL,
+    [UpdatedBy]                               VARCHAR (30) NULL,
+    [UpdatedDate]                             DATETIME     NULL,
+    [UpdatedFromIP]                           VARCHAR (15) NULL,
+    CONSTRAINT [PK_PartyPartnerFunction] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PartyPartnerFunction_PartnerDeterminationProcedureFunction] FOREIGN KEY ([PartnerDeterminationProcedureFunctionId]) REFERENCES [HKP].[PartnerDeterminationProcedureFunction] ([Id]),
+    CONSTRAINT [FK_PartyPartnerFunction_PartnerFunction] FOREIGN KEY ([PartnerFunctionId]) REFERENCES [HKP].[PartnerFunction] ([Id]),
+    CONSTRAINT [FK_PartyPartnerFunction_Party_CustomerId] FOREIGN KEY ([CustomerId]) REFERENCES [HKP].[Party] ([Id]),
+    CONSTRAINT [FK_PartyPartnerFunction_Party_PartyId] FOREIGN KEY ([PartyId]) REFERENCES [HKP].[Party] ([Id]),
+    CONSTRAINT [FK_PartyPartnerFunction_Party_VendorId] FOREIGN KEY ([VendorId]) REFERENCES [HKP].[Party] ([Id])
+);
+

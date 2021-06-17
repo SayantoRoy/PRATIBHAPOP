@@ -1,0 +1,26 @@
+﻿CREATE TABLE [HKP].[JobDescription] (
+    [Id]                          VARCHAR (10) NOT NULL,
+    [CompanyGroupId]              VARCHAR (10) NOT NULL,
+    [JobDescriptionCategoryId]    VARCHAR (10) NOT NULL,
+    [JobDescriptionSubCategoryId] VARCHAR (10) NOT NULL,
+    [JobDescriptionItemId]        VARCHAR (10) NOT NULL,
+    [JobLevel]                    VARCHAR (30) NOT NULL,
+    [PrimaryOrSecondary]          VARCHAR (30) NOT NULL,
+    [Frequency]                   VARCHAR (30) NOT NULL,
+    [NatureOfActivity]            VARCHAR (30) NOT NULL,
+    [SystemOrManual]              VARCHAR (30) NOT NULL,
+    [DocumentApplicable]          BIT          NOT NULL,
+    [EstimatedTimeRequired]       SMALLINT     NOT NULL,
+    [AddedBy]                     VARCHAR (30) NOT NULL,
+    [AddedDate]                   DATETIME     NOT NULL,
+    [AddedFromIP]                 VARCHAR (15) NOT NULL,
+    [UpdatedBy]                   VARCHAR (30) NULL,
+    [UpdatedDate]                 DATETIME     NULL,
+    [UpdatedFromIP]               VARCHAR (15) NULL,
+    CONSTRAINT [PK_JobDescription] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_JobDescription_CompanyGroup] FOREIGN KEY ([CompanyGroupId]) REFERENCES [ORG].[CompanyGroup] ([Id]),
+    CONSTRAINT [FK_JobDescription_JobDescriptionCategory] FOREIGN KEY ([JobDescriptionCategoryId]) REFERENCES [HKP].[JobDescriptionCategory] ([Id]),
+    CONSTRAINT [FK_JobDescription_JobDescriptionItem] FOREIGN KEY ([JobDescriptionItemId]) REFERENCES [HKP].[JobDescriptionItem] ([Id]),
+    CONSTRAINT [FK_JobDescription_JobDescriptionSubCategory] FOREIGN KEY ([JobDescriptionSubCategoryId]) REFERENCES [HKP].[JobDescriptionSubCategory] ([Id])
+);
+

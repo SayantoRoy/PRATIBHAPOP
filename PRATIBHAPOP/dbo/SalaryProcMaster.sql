@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[SalaryProcMaster] (
+    [SystemID]                  VARCHAR (30)    NOT NULL,
+    [SalaryProcID]              VARCHAR (30)    NOT NULL,
+    [FromDate]                  DATE            NOT NULL,
+    [ToDate]                    DATE            NOT NULL,
+    [SalaryProcDate]            DATETIME        NOT NULL,
+    [MWCRSystemID]              VARCHAR (30)    NULL,
+    [AmtDefinitionCurrencyID]   VARCHAR (10)    NULL,
+    [AmtDefinitionCurrencyRate] NUMERIC (18, 2) NULL,
+    [LocalCurrencyID]           VARCHAR (10)    NULL,
+    [MonthNo]                   INT             NULL,
+    [YearNo]                    INT             NULL,
+    [IsCompleteMonth]           BIT             NULL,
+    [UserGroupSystemID]         VARCHAR (30)    NULL,
+    [AddedBy]                   VARCHAR (100)   NOT NULL,
+    [DateAdded]                 DATETIME        NOT NULL,
+    [UpdatedBy]                 VARCHAR (100)   NULL,
+    [DateUpdated]               DATETIME        NULL,
+    [Description]               VARCHAR (250)   NULL,
+    [IsValidGovGrd]             BIT             CONSTRAINT [DF_SalaryProcMaster_IsValidGovGrd] DEFAULT ((0)) NOT NULL,
+    [SalaryProcFlag]            VARCHAR (15)    NULL,
+    CONSTRAINT [PK_SalaryProcMaster] PRIMARY KEY CLUSTERED ([SystemID] ASC) WITH (FILLFACTOR = 90),
+    CONSTRAINT [FK_SalaryProcMaster_Currency] FOREIGN KEY ([LocalCurrencyID]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_SalaryProcMaster_Currency1] FOREIGN KEY ([AmtDefinitionCurrencyID]) REFERENCES [SCS].[Currency] ([Id]),
+    CONSTRAINT [FK_SalaryProcMaster_SalaryProcMaster] FOREIGN KEY ([MWCRSystemID]) REFERENCES [dbo].[ExchangerateDateWise] ([SystemID]),
+    CONSTRAINT [FK_SalaryProcMaster_userWiseCentralPayrollGroup] FOREIGN KEY ([UserGroupSystemID]) REFERENCES [dbo].[userWiseCentralPayrollGroup] ([SystemID])
+);
+

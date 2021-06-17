@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[BonusPaymentActual] (
+    [SystemID]             VARCHAR (30)    NOT NULL,
+    [BnsMstSystemID]       VARCHAR (30)    NULL,
+    [EmpSystemID]          VARCHAR (30)    NULL,
+    [ServiceLenght]        INT             CONSTRAINT [DF_BonusPaymentActual_ServiceLenght] DEFAULT ((0)) NULL,
+    [SalaryAmount]         NUMERIC (18, 2) NULL,
+    [BonusAmount]          INT             NULL,
+    [IsApproved]           BIT             CONSTRAINT [DF_BonusPaymentActual_IsApproved] DEFAULT ((0)) NOT NULL,
+    [ApprovedBy]           VARCHAR (100)   NULL,
+    [DateApproved]         DATETIME        NULL,
+    [IsDisbused]           BIT             CONSTRAINT [DF_BonusPaymentActual_IsDisbused] DEFAULT ((0)) NOT NULL,
+    [IsDisbusedWithSalary] BIT             CONSTRAINT [DF_BonusPaymentActual_IsDisbusedWithSalary] DEFAULT ((0)) NOT NULL,
+    [SlrProcYearNo]        INT             CONSTRAINT [DF_BonusPaymentActual_SlrProcYearNo] DEFAULT ((0)) NULL,
+    [SlrProcMonthNo]       INT             CONSTRAINT [DF_BonusPaymentActual_SlrProcMonthNo] DEFAULT ((0)) NULL,
+    [DisbusedBy]           VARCHAR (100)   NULL,
+    [DateDisbused]         DATETIME        NULL,
+    [IsPercentage]         BIT             DEFAULT ((1)) NOT NULL,
+    [IsProportionate]      BIT             DEFAULT ((0)) NOT NULL,
+    [IsFixed]              BIT             DEFAULT ((0)) NOT NULL,
+    [BonusPercentage]      NUMERIC (18, 2) DEFAULT ((0)) NOT NULL,
+    [DivisionFactor]       NUMERIC (18, 2) DEFAULT ((1)) NOT NULL,
+    [ServiceLengthType]    VARCHAR (30)    DEFAULT ('Day') NOT NULL,
+    CONSTRAINT [PK_BonusPaymentActual] PRIMARY KEY CLUSTERED ([SystemID] ASC) WITH (FILLFACTOR = 90),
+    CONSTRAINT [FK_BonusPaymentActual_BonusPaymentActualMaster] FOREIGN KEY ([BnsMstSystemID]) REFERENCES [dbo].[BonusPaymentActualMaster] ([SystemID]),
+    CONSTRAINT [FK_BonusPaymentActual_EmployeeInformation] FOREIGN KEY ([EmpSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

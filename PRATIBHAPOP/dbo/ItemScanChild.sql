@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[ItemScanChild] (
+    [Id]          VARCHAR (20)    NOT NULL,
+    [MasterId]    VARCHAR (20)    NOT NULL,
+    [ProductCode] VARCHAR (20)    NOT NULL,
+    [POId]        VARCHAR (30)    NOT NULL,
+    [LotNo]       VARCHAR (30)    NULL,
+    [RefNo]       VARCHAR (30)    NOT NULL,
+    [Cones]       VARCHAR (30)    NOT NULL,
+    [NetWeight]   DECIMAL (18, 3) NOT NULL,
+    [GWeight]     DECIMAL (18, 3) NOT NULL,
+    [PackedBy]    VARCHAR (30)    NOT NULL,
+    [Shade]       VARCHAR (30)    NOT NULL,
+    [Booked]      BIT             NULL,
+    [PackingId]   VARCHAR (30)    NULL,
+    [AddedBy]     VARCHAR (30)    NULL,
+    [AddedDate]   DATETIME        NOT NULL,
+    [UpdatedBy]   VARCHAR (30)    NULL,
+    [UpdatedDate] DATETIME        NULL,
+    [LocMasterId] VARCHAR (20)    NULL,
+    CONSTRAINT [PK__ItemScanChild] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK__ItemScaChild_MasterId] FOREIGN KEY ([MasterId]) REFERENCES [dbo].[ItemScan] ([Id]),
+    CONSTRAINT [FK__ItemScan_PackedBy] FOREIGN KEY ([PackedBy]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK__ItemScan_POId] FOREIGN KEY ([POId]) REFERENCES [TRN].[ProductionOrder] ([Id]),
+    CONSTRAINT [FK_ItemScanChild_LocMasterId] FOREIGN KEY ([LocMasterId]) REFERENCES [MST].[MaterialMovementMaster] ([Id])
+);
+

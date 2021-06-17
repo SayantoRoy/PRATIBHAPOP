@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[SalaryRuleDayStatusMaster] (
+    [SalaryRuleDayStatusSystemID] VARCHAR (30)    NOT NULL,
+    [SalaryRuleMasterSystemID]    VARCHAR (30)    NOT NULL,
+    [SalaryHeadID]                VARCHAR (30)    NULL,
+    [IsDSPNetPayEffect]           BIT             CONSTRAINT [DF_SalaryRuleDayStatusMaster_IsDSPNetPayEffect] DEFAULT ((0)) NOT NULL,
+    [IsDSPTagAndUnTag]            BIT             CONSTRAINT [DF_SalaryRuleDayStatusMaster_IsDSPNetPayEffect1] DEFAULT ((0)) NOT NULL,
+    [IsFixed]                     BIT             NULL,
+    [FixedValue]                  NUMERIC (18, 2) NULL,
+    [IsPercemtage]                BIT             NULL,
+    [PerSalaryHeadID]             VARCHAR (30)    NULL,
+    [PerValue]                    NUMERIC (18, 2) NULL,
+    [IsOverWrite]                 BIT             NULL,
+    [ShiftType]                   VARCHAR (500)   NULL,
+    [DayType]                     VARCHAR (250)   NULL,
+    [LeaveType]                   VARCHAR (250)   NULL,
+    [LeaveAppType]                VARCHAR (500)   NULL,
+    [SequenceNo]                  INT             NULL,
+    [IsDisbusted]                 BIT             CONSTRAINT [DF_SalaryRuleDayStatusMaster_IsDisbusted] DEFAULT ((0)) NOT NULL,
+    [AddedBy]                     VARCHAR (100)   NOT NULL,
+    [DateAdded]                   DATETIME        NOT NULL,
+    [UpdatedBy]                   VARCHAR (100)   NULL,
+    [DateUpdated]                 DATETIME        NULL,
+    CONSTRAINT [PK_SalaryRuleDayStatus] PRIMARY KEY CLUSTERED ([SalaryRuleDayStatusSystemID] ASC),
+    CONSTRAINT [FK_SalaryRuleDayStatusMaster_SalaryHead] FOREIGN KEY ([SalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID]),
+    CONSTRAINT [FK_SalaryRuleDayStatusMaster_SalaryHead1] FOREIGN KEY ([PerSalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID]),
+    CONSTRAINT [FK_SalaryRuleDayStatusMaster_SalaryRuleMaster] FOREIGN KEY ([SalaryRuleMasterSystemID]) REFERENCES [dbo].[SalaryRuleMaster] ([SystemID])
+);
+

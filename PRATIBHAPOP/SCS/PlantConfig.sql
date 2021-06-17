@@ -1,0 +1,28 @@
+﻿CREATE TABLE [SCS].[PlantConfig] (
+    [Id]                                                  VARCHAR (10)    NOT NULL,
+    [PlantId]                                             VARCHAR (10)    NULL,
+    [BuyerApplicable]                                     BIT             CONSTRAINT [DF_PlantConfig_BuyerApplicable] DEFAULT ((0)) NOT NULL,
+    [CompanyGroupId]                                      VARCHAR (10)    NOT NULL,
+    [CompanyId]                                           VARCHAR (10)    NOT NULL,
+    [AddedBy]                                             VARCHAR (30)    NOT NULL,
+    [AddedDate]                                           DATETIME        NOT NULL,
+    [AddedFromIP]                                         VARCHAR (15)    NOT NULL,
+    [UpdatedBy]                                           VARCHAR (30)    NULL,
+    [UpdatedDate]                                         DATETIME        NULL,
+    [UpdatedFromIP]                                       VARCHAR (15)    NULL,
+    [BlanketDefaultLength]                                DECIMAL (18, 2) NULL,
+    [BlanketDefaultWidth]                                 DECIMAL (18, 2) NULL,
+    [IsBlanketDefaultLengthValuesChangeable]              BIT             NULL,
+    [IsBlanketDefaultWidthValuesChangeable]               BIT             NULL,
+    [IsAfterWashShrinkageOnActual]                        BIT             NULL,
+    [FabRollPrefix]                                       VARCHAR (2)     NULL,
+    [IsProductionOrderCreatedAfterConfirmationOfSO]       BIT             DEFAULT ((0)) NULL,
+    [WeekendforProductionOrder]                           VARCHAR (10)    NULL,
+    [Operation]                                           VARCHAR (20)    NULL,
+    [OperationInProductionBookingWillBeCapturebyBulletin] BIT             DEFAULT ((0)) NOT NULL,
+    [MachineBudgetLevel]                                  VARCHAR (10)    NULL,
+    [IsMachineChangeableinBulletinTemplate]               BIT             DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_PlantConfig] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PlantConfig_Plant] FOREIGN KEY ([PlantId]) REFERENCES [ORG].[Plant] ([Id])
+);
+

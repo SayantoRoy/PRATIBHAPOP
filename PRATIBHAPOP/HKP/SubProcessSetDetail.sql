@@ -1,0 +1,28 @@
+﻿CREATE TABLE [HKP].[SubProcessSetDetail] (
+    [Id]                    VARCHAR (10)    NOT NULL,
+    [SubProcessSetId]       VARCHAR (10)    NOT NULL,
+    [SubProcessId]          VARCHAR (10)    NOT NULL,
+    [Sequence]              DECIMAL (18, 2) NULL,
+    [IsBaseProcess]         BIT             NOT NULL,
+    [Days]                  INT             NOT NULL,
+    [Symbol]                VARCHAR (1)     NULL,
+    [ProductionCycleTime]   INT             NOT NULL,
+    [JobWorkApplicable]     BIT             NOT NULL,
+    [JobWorkType]           VARCHAR (50)    NULL,
+    [EntityIdWithinCompany] VARCHAR (10)    NULL,
+    [EntityIdWithinGroup]   VARCHAR (10)    NULL,
+    [VendorId]              VARCHAR (10)    NULL,
+    [AddedBy]               VARCHAR (30)    NOT NULL,
+    [AddedDate]             DATETIME        NOT NULL,
+    [AddedFromIP]           VARCHAR (15)    NOT NULL,
+    [UpdatedBy]             VARCHAR (30)    NULL,
+    [UpdatedDate]           DATETIME        NULL,
+    [UpdatedFromIP]         VARCHAR (15)    NULL,
+    CONSTRAINT [PK_SubProcessSetDetail] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_SubProcessSetDetail_EntityIdWithinCompany] FOREIGN KEY ([EntityIdWithinCompany]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_SubProcessSetDetail_EntityIdWithinGroup] FOREIGN KEY ([EntityIdWithinGroup]) REFERENCES [ORG].[Entity] ([Id]),
+    CONSTRAINT [FK_SubProcessSetDetail_SubProcessId] FOREIGN KEY ([SubProcessId]) REFERENCES [HKP].[SubProcess] ([Id]),
+    CONSTRAINT [FK_SubProcessSetDetail_SubProcessSet] FOREIGN KEY ([SubProcessSetId]) REFERENCES [HKP].[SubProcessSet] ([Id]),
+    CONSTRAINT [FK_SubProcessSetDetail_Vendor] FOREIGN KEY ([VendorId]) REFERENCES [HKP].[Party] ([Id])
+);
+

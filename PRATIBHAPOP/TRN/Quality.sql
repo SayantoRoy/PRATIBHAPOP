@@ -1,0 +1,28 @@
+﻿CREATE TABLE [TRN].[Quality] (
+    [ID]                          VARCHAR (30)    NOT NULL,
+    [PlantID]                     VARCHAR (10)    NULL,
+    [ProductionBatchWorkCenterID] VARCHAR (30)    NULL,
+    [SalesOrderMasterID]          VARCHAR (20)    NULL,
+    [WorkCenterMasterID]          VARCHAR (30)    NULL,
+    [ResponsiblePersonID]         VARCHAR (30)    NULL,
+    [ProductionDate]              DATETIME        NULL,
+    [LotSize]                     DECIMAL (18, 4) NULL,
+    [SampleQty]                   DECIMAL (18, 4) NULL,
+    [CheckedQty]                  DECIMAL (18, 4) NULL,
+    [DefectiveQty]                DECIMAL (18, 4) NULL,
+    [QCStatus]                    VARCHAR (20)    NULL,
+    [AddedBy]                     VARCHAR (100)   NULL,
+    [AddedDate]                   DATETIME        NULL,
+    [UpdatedBy]                   VARCHAR (100)   NULL,
+    [UpdatedDate]                 DATETIME        NULL,
+    [MaterialMasterArticleId]     VARCHAR (10)    NULL,
+    [MaterialMasterId]            VARCHAR (30)    NULL,
+    [ProductionOrderId]           VARCHAR (30)    NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([MaterialMasterArticleId]) REFERENCES [MST].[MaterialMasterArticle] ([Id]),
+    FOREIGN KEY ([MaterialMasterId]) REFERENCES [MST].[MaterialMaster] ([Id]),
+    FOREIGN KEY ([PlantID]) REFERENCES [ORG].[Plant] ([Id]),
+    CONSTRAINT [FK__Quality__Product__19B752E7] FOREIGN KEY ([ProductionOrderId]) REFERENCES [TRN].[ProductionOrder] ([Id]),
+    CONSTRAINT [FK__Quality__WorkCen__3039FA35] FOREIGN KEY ([WorkCenterMasterID]) REFERENCES [SCS].[WorkCenterMaster] ([Id])
+);
+

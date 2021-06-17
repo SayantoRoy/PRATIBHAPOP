@@ -1,0 +1,25 @@
+﻿CREATE TABLE [HKP].[Village] (
+    [Id]            VARCHAR (20)  NOT NULL,
+    [StateId]       VARCHAR (10)  NOT NULL,
+    [DistrictId]    VARCHAR (10)  NOT NULL,
+    [TalukId]       VARCHAR (20)  NOT NULL,
+    [Sequence]      VARCHAR (50)  NOT NULL,
+    [Code]          VARCHAR (10)  NOT NULL,
+    [ShortName]     VARCHAR (15)  NOT NULL,
+    [StandardName]  VARCHAR (50)  NOT NULL,
+    [UserName]      VARCHAR (50)  NOT NULL,
+    [Description]   VARCHAR (250) NULL,
+    [Remarks]       VARCHAR (250) NULL,
+    [Active]        BIT           NOT NULL,
+    [AddedBy]       VARCHAR (30)  NOT NULL,
+    [AddedDate]     DATETIME      NOT NULL,
+    [AddedFromIP]   VARCHAR (15)  NOT NULL,
+    [UpdatedBy]     VARCHAR (30)  NULL,
+    [UpdatedDate]   DATETIME      NULL,
+    [UpdatedFromIP] VARCHAR (15)  NULL,
+    CONSTRAINT [PK_Village] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Village_District] FOREIGN KEY ([DistrictId]) REFERENCES [SCS].[District] ([Id]),
+    CONSTRAINT [FK_Village_State] FOREIGN KEY ([StateId]) REFERENCES [SCS].[State] ([Id]),
+    CONSTRAINT [FK_Village_TalukId] FOREIGN KEY ([TalukId]) REFERENCES [HKP].[Taluk] ([Id])
+);
+

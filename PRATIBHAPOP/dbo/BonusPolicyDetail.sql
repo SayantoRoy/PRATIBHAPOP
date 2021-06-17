@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[BonusPolicyDetail] (
+    [SystemID]          VARCHAR (30)    NOT NULL,
+    [BPMSystemID]       VARCHAR (30)    NULL,
+    [EntitleFrm]        VARCHAR (30)    NULL,
+    [EmpCategorySysID]  VARCHAR (10)    NULL,
+    [MinServLen]        INT             NULL,
+    [MaxServLen]        INT             NULL,
+    [IsFixed]           BIT             CONSTRAINT [DF_BonusPolicyDetail_IsFixed] DEFAULT ((0)) NOT NULL,
+    [FixedAmount]       INT             NULL,
+    [IsPercentage]      BIT             CONSTRAINT [DF_BonusPolicyDetail_IsPercentage] DEFAULT ((0)) NOT NULL,
+    [IsProportionate]   BIT             CONSTRAINT [DF_BonusPolicyDetail_IsProportionate] DEFAULT ((0)) NOT NULL,
+    [PerctSalaryHeadID] VARCHAR (30)    NULL,
+    [BonusPercentage]   DECIMAL (18, 2) NULL,
+    [DivisionFactor]    NUMERIC (18, 2) NULL,
+    [MinBonusAmt]       INT             NULL,
+    [AddedBy]           VARCHAR (100)   NOT NULL,
+    [DateAdded]         DATETIME        NOT NULL,
+    [UpdatedBy]         VARCHAR (100)   NULL,
+    [DateUpdated]       DATETIME        NULL,
+    [ServiceLengthType] VARCHAR (30)    DEFAULT ('Day') NOT NULL,
+    [DisbursementType]  VARCHAR (30)    DEFAULT ('Fixed') NOT NULL,
+    CONSTRAINT [PK_BonusPolicyDetail] PRIMARY KEY CLUSTERED ([SystemID] ASC) WITH (FILLFACTOR = 90),
+    CONSTRAINT [FK_BonusPolicyDetail_BonusPolicyMaster] FOREIGN KEY ([BPMSystemID]) REFERENCES [dbo].[BonusPolicyMaster] ([SystemID]),
+    CONSTRAINT [FK_BonusPolicyDetail_EmployeeCategory] FOREIGN KEY ([EmpCategorySysID]) REFERENCES [HKP].[EmployeeCategory] ([Id]),
+    CONSTRAINT [FK_BonusPolicyDetail_SalaryHead] FOREIGN KEY ([PerctSalaryHeadID]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID])
+);
+

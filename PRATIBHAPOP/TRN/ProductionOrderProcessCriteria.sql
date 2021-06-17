@@ -1,0 +1,27 @@
+﻿CREATE TABLE [TRN].[ProductionOrderProcessCriteria] (
+    [Id]                      VARCHAR (30)    NOT NULL,
+    [ProductionOrderId]       VARCHAR (30)    NULL,
+    [EntityId]                VARCHAR (10)    NULL,
+    [LoadFactor]              DECIMAL (18, 2) NULL,
+    [CycleTime]               INT             NULL,
+    [AvgWeight]               DECIMAL (18, 2) NULL,
+    [WeightUomId]             VARCHAR (10)    NULL,
+    [Qty]                     INT             NULL,
+    [ProcessId]               VARCHAR (10)    NULL,
+    [ProcessTypeId]           VARCHAR (10)    NULL,
+    [ProcessCriteriaId]       VARCHAR (10)    NULL,
+    [Characteristics1Id]      VARCHAR (10)    NULL,
+    [Characteristics2Id]      VARCHAR (10)    NULL,
+    [Characteristics3Id]      VARCHAR (10)    NULL,
+    [Characteristics1ValueId] VARCHAR (10)    NULL,
+    [Characteristics2ValueId] VARCHAR (10)    NULL,
+    [Characteristics3ValueId] VARCHAR (10)    NULL,
+    [AddedBy]                 VARCHAR (30)    NOT NULL,
+    [AddedDate]               DATETIME        NOT NULL,
+    [AddedFromIP]             VARCHAR (15)    NOT NULL,
+    [UpdatedBy]               VARCHAR (30)    NULL,
+    [UpdatedDate]             DATETIME        NULL,
+    [UpdatedFromIP]           VARCHAR (15)    NULL,
+    CONSTRAINT [PK_ProductionOrderProcessCriteria] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

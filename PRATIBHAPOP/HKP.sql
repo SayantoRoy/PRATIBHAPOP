@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [HKP]
+    AUTHORIZATION [dbo];
+

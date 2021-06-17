@@ -1,0 +1,22 @@
+﻿CREATE TABLE [dbo].[PreCostingDirectProcess] (
+    [Id]                      VARCHAR (10)    NOT NULL,
+    [CostingItemId]           VARCHAR (10)    NULL,
+    [CostingMasterTemplateId] VARCHAR (10)    NULL,
+    [ExecutionType]           VARCHAR (20)    NULL,
+    [Value]                   DECIMAL (18, 5) NULL,
+    [Rate]                    DECIMAL (18, 5) NULL,
+    [Amount]                  DECIMAL (18, 5) NULL,
+    [Description]             VARCHAR (250)   NULL,
+    [AddedBy]                 VARCHAR (30)    NOT NULL,
+    [AddedDate]               DATETIME        NOT NULL,
+    [AddedFromIP]             VARCHAR (15)    NOT NULL,
+    [UpdatedBy]               VARCHAR (30)    NULL,
+    [UpdatedDate]             DATETIME        NULL,
+    [UpdatedFromIP]           VARCHAR (15)    NULL,
+    [ResponsiblePersoinId]    VARCHAR (30)    NULL,
+    CONSTRAINT [PK_PreCostingDirectProcess] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_PreCostingDirectProcess_CostingItem] FOREIGN KEY ([CostingItemId]) REFERENCES [HKP].[CostingItem] ([Id]),
+    CONSTRAINT [FK_PreCostingDirectProcess_CostingMasterTemplate] FOREIGN KEY ([CostingMasterTemplateId]) REFERENCES [dbo].[CostingMasterTemplate] ([Id]),
+    CONSTRAINT [FK_PreCostingDirectProcess_EmployeeInformation] FOREIGN KEY ([ResponsiblePersoinId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+

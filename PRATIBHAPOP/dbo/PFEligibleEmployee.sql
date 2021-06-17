@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[PFEligibleEmployee] (
+    [ID]                   VARCHAR (20) NOT NULL,
+    [EmpSystemID]          VARCHAR (30) NULL,
+    [PFMstID]              VARCHAR (20) NULL,
+    [StartDate]            DATETIME     NOT NULL,
+    [MaturityDate]         DATETIME     NOT NULL,
+    [PFDtlID]              VARCHAR (20) NULL,
+    [IsMandatory]          BIT          CONSTRAINT [DF_PFEligibleEmployee_IsMandatory] DEFAULT ((0)) NOT NULL,
+    [IsActive]             BIT          CONSTRAINT [DF_PFEligibleEmployee_IsActive] DEFAULT ((0)) NOT NULL,
+    [AddedBy]              VARCHAR (30) NOT NULL,
+    [AddedDate]            DATETIME     NOT NULL,
+    [AddedFromIP]          VARCHAR (15) NOT NULL,
+    [UpdatedBy]            VARCHAR (30) NULL,
+    [UpdatedDate]          DATETIME     NULL,
+    [UpdatedFromIP]        VARCHAR (15) NULL,
+    [IsApproved]           BIT          DEFAULT ((0)) NOT NULL,
+    [AlwnSlrHd]            VARCHAR (30) NULL,
+    [IsVoluntaryPF]        BIT          CONSTRAINT [DF_PFEligibleEmployee_IsVoluntaryPF] DEFAULT ((0)) NOT NULL,
+    [IsNotEntGetEmplrAlwn] BIT          CONSTRAINT [DF_PFEligibleEmployee_IsNotEntGetEmplrAlwn] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_PFEligibleEmployee] PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_PFEligibleEmployee_EmployeeInformation] FOREIGN KEY ([EmpSystemID]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK_PFEligibleEmployee_PFPolicyDetails] FOREIGN KEY ([PFDtlID]) REFERENCES [dbo].[PFPolicyDetails] ([ID]),
+    CONSTRAINT [FK_PFEligibleEmployee_PFPolicyMaster] FOREIGN KEY ([PFMstID]) REFERENCES [dbo].[PFPolicyMaster] ([ID]),
+    CONSTRAINT [FK_PFEligibleEmployee_SalaryHead] FOREIGN KEY ([AlwnSlrHd]) REFERENCES [dbo].[SalaryHead] ([SalaryHeadID])
+);
+

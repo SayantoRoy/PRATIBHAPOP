@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[TaskAudit] (
+    [Id]                    VARCHAR (30)   NOT NULL,
+    [TaskManagerMasterId]   VARCHAR (30)   NULL,
+    [AuthorizationType]     VARCHAR (30)   NULL,
+    [ResponsiblePersonId]   VARCHAR (30)   NULL,
+    [Remarks]               NVARCHAR (250) NULL,
+    [CommitmentDate]        DATETIME       NULL,
+    [DueDate]               DATETIME       NULL,
+    [AddedBy]               VARCHAR (30)   NULL,
+    [AddedDate]             DATETIME       NULL,
+    [AddedFromIP]           VARCHAR (15)   NULL,
+    [UpdatedBy]             VARCHAR (30)   NULL,
+    [UpdatedDate]           DATETIME       NULL,
+    [UpdatedFromIP]         VARCHAR (15)   NULL,
+    [RevisedCommitmentDate] DATETIME       NULL,
+    [isDone]                BIT            DEFAULT ((0)) NULL,
+    [isRead]                BIT            DEFAULT ((0)) NULL,
+    [TakenForNotification]  BIT            DEFAULT ((0)) NULL,
+    [isReadComment]         BIT            DEFAULT ((0)) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([TaskManagerMasterId]) REFERENCES [dbo].[TaskManagerMaster] ([Id]),
+    FOREIGN KEY ([TaskManagerMasterId]) REFERENCES [dbo].[TaskManagerMaster] ([Id]),
+    FOREIGN KEY ([TaskManagerMasterId]) REFERENCES [dbo].[TaskManagerMaster] ([Id]),
+    CONSTRAINT [FK__TaskAudit__Respo__04122A8B] FOREIGN KEY ([ResponsiblePersonId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK__TaskAudit__Respo__3A393112] FOREIGN KEY ([ResponsiblePersonId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId]),
+    CONSTRAINT [FK__TaskAudit__Respo__5EAB9BB2] FOREIGN KEY ([ResponsiblePersonId]) REFERENCES [dbo].[EmployeeInformation] ([SystemId])
+);
+
